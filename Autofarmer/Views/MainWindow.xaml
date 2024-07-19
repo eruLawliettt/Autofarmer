@@ -1,0 +1,63 @@
+﻿<Window x:Class="Autofarmer.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Autofarmer.ViewModels"
+        xmlns:local="clr-namespace:Autofarmer"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        MinHeight="600"
+        Height="600"
+        MinWidth="1000"
+        Width="1000"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <ListView
+            Background="Gray"
+            ItemsSource="{Binding AccountInfoModels}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    
+                        <Border
+                            Name="border"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            HorizontalAlignment="Center"
+                            
+                            Margin="5">
+                            <TextBox
+                                HorizontalAlignment="Center"
+                                Background="AntiqueWhite"
+                                TextWrapping="WrapWithOverflow"
+                                Padding="10"
+                                Height="260"
+                                Width="900"
+                                FontSize="22"
+                                IsReadOnly="True"
+                                Text="{Binding FullName, Mode=OneWay}">
+                            </TextBox>
+                        </Border>
+                    
+                </DataTemplate>
+                                
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style 
+                    TargetType="ListViewItem">
+                    <Setter 
+                        Property="HorizontalContentAlignment" 
+                        Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+    </Grid>
+
+
+</Window>
