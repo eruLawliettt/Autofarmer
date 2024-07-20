@@ -79,12 +79,12 @@ namespace Autofarmer.ViewModels
             List<AccountInfoModel> accountInfoModels = [];
 
             foreach (var account in accounts)
-            { 
+            {
                 string jac = GetRandomJaC(JACs);
 
                 EmailModel email = GetRandomEmailModel(Emails);
 
-                AccountInfoModel model = new(account, GetCityFromAccountIdString(account), 
+                AccountInfoModel model = new(account, GetCityFromAccountIdString(account),
                     GetRandomValueFromList(Descriptions), GetJobFromJac(jac), GetCompanyFromJac(jac), email);
 
                 accountInfoModels.Add(model);
@@ -110,7 +110,7 @@ namespace Autofarmer.ViewModels
         {
             List<EmailModel> emailModels = [];
 
-            foreach(string emailString in emailStrings)
+            foreach (string emailString in emailStrings)
             {
                 string email = emailString[..emailString.IndexOf(':')];
                 string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
@@ -129,7 +129,7 @@ namespace Autofarmer.ViewModels
 
             var clean = Regex.Replace(AccountId, models, "", RegexOptions.IgnoreCase);
             clean = new string(clean.Where(c => !nums.Contains(c)).ToArray()).Trim();
-            
+
             return clean;
         }
         private string GetRandomValueFromList(List<string> list)
@@ -138,7 +138,7 @@ namespace Autofarmer.ViewModels
             int index = random.Next(list.Count);
             return list[index];
         }
-        private string GetRandomJaC(Dictionary<string,string> dict)
+        private string GetRandomJaC(Dictionary<string, string> dict)
         {
             var random = new Random();
             int index = random.Next(dict.Count);
@@ -210,7 +210,7 @@ namespace Autofarmer.ViewModels
                 CurrentAccount = AccountInfoModels[index];
                 CurrentAccountNumber = index + 1;
             }
-                
+
             else
                 MessageBox.Show("Аккаунт последний");
         }
@@ -227,6 +227,12 @@ namespace Autofarmer.ViewModels
 
         }
 
+        void CopyToClipboard()
+        {
+            Clipboard.SetText(CurrentAccount.Email.FullEmailString);
+        }
+
+        public ICommand CopyToClipboardCommand => new RelayCommand(x => CopyToClipboard());
         public ICommand NextAccountCommand => new RelayCommand(x => NextAccount());
         public ICommand PreviousAccountCommand => new RelayCommand(x => PreviousAccount());
     }

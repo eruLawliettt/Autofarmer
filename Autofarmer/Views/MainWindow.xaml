@@ -191,6 +191,14 @@
                             Padding="10"
                             IsReadOnly="True"
                             Text="Y coords"/>
+
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Content="GAY"
+                            Command="{Binding CopyToClipboardCommand}"
+                            CommandParameter="{Binding CurrentAccount.Email.FullEmailString}"/>
+
                     </Grid>
                     
                 </Grid>

@@ -22,5 +22,7 @@ namespace Autofarmer.Models
             Recovery = recovery;
             QRCode = qRCode;
         }
+
+        public string? FullEmailString => $"{Email}:{Password}:{Recovery}";
     }
 }
