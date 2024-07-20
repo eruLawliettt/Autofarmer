@@ -127,8 +127,71 @@
                         Text="recoverysample@yahoo.com"/>
                     
                 </Grid>
-                   
-                
+
+                <Grid
+                    Grid.Row="2">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image    
+                        Grid.Column="0"
+                        Source="{Binding EmailQRCode}"
+                        RenderOptions.EdgeMode="Aliased">
+                    </Image>
+
+                    <Grid
+                        Grid.Column="1"
+                        Margin="20">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="4*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Text="Долгота"/>
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Text="Широта"/>
+
+                        <TextBox 
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            VerticalContentAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            TextWrapping="WrapWithOverflow"                    
+                            Padding="10"
+                            IsReadOnly="True"
+                            Text="X coords"/>
+
+                        <TextBox 
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            VerticalContentAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            TextWrapping="WrapWithOverflow"                    
+                            Padding="10"
+                            IsReadOnly="True"
+                            Text="Y coords"/>
+                    </Grid>
+                    
+                </Grid>
 
                 <TextBox
                     Grid.Row="3"

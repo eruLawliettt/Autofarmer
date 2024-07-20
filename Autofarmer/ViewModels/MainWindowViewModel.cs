@@ -1,6 +1,9 @@
 ﻿using Autofarmer.Models;
+using QRCoder;
+using QRCoder.Xaml;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,7 +12,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using ZXing.QrCode.Internal;
 
 namespace Autofarmer.ViewModels
 {
@@ -22,6 +28,7 @@ namespace Autofarmer.ViewModels
 
         private AccountInfoModel _currentAccount;
         private int _currentAccountNumber;
+        private DrawingImage _emailQRCode;
 
         public List<string> Descriptions { get; set; } = [];
         public List<string> Accounts { get; set; } = [];
@@ -42,6 +49,12 @@ namespace Autofarmer.ViewModels
             set => Set(ref _currentAccountNumber, value, nameof(CurrentAccountNumber));
         }
 
+        public DrawingImage EmailQRCode
+        {
+            get { return _emailQRCode; }
+            set => Set(ref _emailQRCode, value, nameof(EmailQRCode));
+        }
+
 
         public MainWindowViewModel()
         {
@@ -55,6 +68,8 @@ namespace Autofarmer.ViewModels
 
             CurrentAccount = AccountInfoModels[0];
             CurrentAccountNumber = 1;
+
+            EmailQRCode = GenerateQR("gaywebsite.com");
         }
 
         private List<AccountInfoModel> GenerateAccountInfos(List<string> accounts)
@@ -144,6 +159,15 @@ namespace Autofarmer.ViewModels
         }
 
 
+        DrawingImage GenerateQR(string value)
+        {
+            using var qrGenerator = new QRCodeGenerator();
+            using var qrCodeData = qrGenerator.CreateQrCode(value, QRCodeGenerator.ECCLevel.Q);
+            XamlQRCode qrCode = new XamlQRCode(qrCodeData);
+            DrawingImage qrCodeAsXaml = qrCode.GetGraphic(20);
+            return qrCodeAsXaml;
+
+        }
 
         void NextAccount()
         {
