@@ -11,51 +11,66 @@
         Height="600"
         MinWidth="1000"
         Width="1000"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Calibri"
+        FontSize="24">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
     <Grid>
-        <ListView
-            Background="Gray"
-            ItemsSource="{Binding AccountInfoModels}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    
-                        <Border
-                            Name="border"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            HorizontalAlignment="Center"
-                            
-                            Margin="5">
-                            <TextBox
-                                HorizontalAlignment="Center"
-                                Background="AntiqueWhite"
-                                TextWrapping="WrapWithOverflow"
-                                Padding="10"
-                                Height="260"
-                                Width="900"
-                                FontSize="22"
-                                IsReadOnly="True"
-                                Text="{Binding FullName, Mode=OneWay}">
-                            </TextBox>
-                        </Border>
-                    
-                </DataTemplate>
-                                
-            </ListView.ItemTemplate>
-            <ListView.ItemContainerStyle>
-                <Style 
-                    TargetType="ListViewItem">
-                    <Setter 
-                        Property="HorizontalContentAlignment" 
-                        Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height=".2*"/>
+        </Grid.RowDefinitions>
+
+        <Border
+            Grid.Row="0"
+            Name="border"
+            BorderBrush="Black"
+            BorderThickness="1"
+            HorizontalAlignment="Stretch"      
+            Margin="10">
+            <TextBox
+                HorizontalAlignment="Stretch"
+                Background="AntiqueWhite"
+                TextWrapping="WrapWithOverflow"
+                Padding="10"
+                Height="auto"
+                Width="auto"
+                FontSize="24"
+                IsReadOnly="True"
+                Text="{Binding CurrentAccount.FullName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+            </TextBox>
+        </Border>
+
+
+        <Grid
+            Grid.Row="1"            
+            HorizontalAlignment="Stretch">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Button
+                Grid.Column="0"
+                Margin="10"
+                Content="Previous"
+                Command="{Binding PreviousAccountCommand}">
+            </Button>
+            <Button
+                Grid.Column="1"
+                Margin="10"
+                Content="Next"
+                Command="{Binding NextAccountCommand}">
+            </Button>
+        </Grid>
+
+
 
     </Grid>
 

@@ -6,18 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Navigation;
 
 namespace Autofarmer.ViewModels
 {
-    internal class MainWindowViewModel
+    internal class MainWindowViewModel : ViewModelBase
     {
         private string _descriptionsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Descriptions.txt";
         private string _accountsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Accounts.txt";
         private string _JACsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Jobs and Companies.txt";
         private string _modelsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Models.txt";
 
+        private AccountInfoModel _currentAccount;
 
         public List<string> Descriptions { get; set; } = [];
         public List<string> Accounts { get; set; } = [];
@@ -26,7 +29,12 @@ namespace Autofarmer.ViewModels
 
         public List<AccountInfoModel> AccountInfoModels { get; set; } = [];
 
-        
+        public AccountInfoModel CurrentAccount
+        {
+            get { return _currentAccount; }
+            set => Set(ref _currentAccount, value, nameof(CurrentAccount));
+        }
+
         public MainWindowViewModel()
         {
             Accounts = GetAccountsFromFile(_accountsFilePath);
@@ -36,7 +44,11 @@ namespace Autofarmer.ViewModels
             Models = ReadFileByLines(_modelsFilePath);
 
             AccountInfoModels = GenerateAccountInfos(Accounts);
+
+            CurrentAccount = AccountInfoModels[0];
         }
+
+
 
         private List<AccountInfoModel> GenerateAccountInfos(List<string> accounts)
         {
@@ -57,9 +69,10 @@ namespace Autofarmer.ViewModels
         private string GetCityFromAccountIdString(string AccountId)
         {
             string models = string.Join("|", [.. Models]);
-           
+            char[] nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
             var clean = Regex.Replace(AccountId, models, "", RegexOptions.IgnoreCase);
-            clean = Regex.Replace(clean, @"[\d-]", string.Empty).Trim();
+            clean = new string(clean.Where(c => !nums.Contains(c)).ToArray()).Trim();
             
             return clean;
         }
@@ -128,5 +141,31 @@ namespace Autofarmer.ViewModels
 
             return list;
         }
+
+
+
+        void NextAccount()
+        {
+            int index = AccountInfoModels.IndexOf(CurrentAccount) + 1;
+            if (index != AccountInfoModels.Count)
+                CurrentAccount = AccountInfoModels[index];
+            else
+                MessageBox.Show("Аккаунт последний");
+        }
+
+        void PreviousAccount()
+        {
+            int index = AccountInfoModels.IndexOf(CurrentAccount) - 1;
+            if (index >= 0)
+                CurrentAccount = AccountInfoModels[index];
+            else
+                MessageBox.Show("Предыдущего аккаунта нет");
+
+        }
+
+
+
+        public ICommand NextAccountCommand => new RelayCommand(x => NextAccount());
+        public ICommand PreviousAccountCommand => new RelayCommand(x => PreviousAccount());
     }
 }
