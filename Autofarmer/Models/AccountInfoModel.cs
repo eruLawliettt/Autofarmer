@@ -24,14 +24,9 @@ namespace Autofarmer.Models
 
         }
 
-        public string FullName => $"""
-            {Id}
-
+        public string FullDescription => $"""
             {City} ❤️
             {Description}
-            
-            Job: {Job}
-            Comp: {Company}
             """;
     }
 }

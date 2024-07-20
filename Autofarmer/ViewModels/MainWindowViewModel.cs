@@ -21,6 +21,7 @@ namespace Autofarmer.ViewModels
         private string _modelsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Models.txt";
 
         private AccountInfoModel _currentAccount;
+        private int _currentAccountNumber;
 
         public List<string> Descriptions { get; set; } = [];
         public List<string> Accounts { get; set; } = [];
@@ -35,6 +36,13 @@ namespace Autofarmer.ViewModels
             set => Set(ref _currentAccount, value, nameof(CurrentAccount));
         }
 
+        public int CurrentAccountNumber
+        {
+            get { return _currentAccountNumber; }
+            set => Set(ref _currentAccountNumber, value, nameof(CurrentAccountNumber));
+        }
+
+
         public MainWindowViewModel()
         {
             Accounts = GetAccountsFromFile(_accountsFilePath);
@@ -46,9 +54,8 @@ namespace Autofarmer.ViewModels
             AccountInfoModels = GenerateAccountInfos(Accounts);
 
             CurrentAccount = AccountInfoModels[0];
+            CurrentAccountNumber = 1;
         }
-
-
 
         private List<AccountInfoModel> GenerateAccountInfos(List<string> accounts)
         {
@@ -65,7 +72,6 @@ namespace Autofarmer.ViewModels
 
             return accountInfoModels;
         }
-
         private string GetCityFromAccountIdString(string AccountId)
         {
             string models = string.Join("|", [.. Models]);
@@ -76,14 +82,12 @@ namespace Autofarmer.ViewModels
             
             return clean;
         }
-
         private string GetRandomValueFromList(List<string> list)
         {
             var random = new Random();
             int index = random.Next(list.Count);
             return list[index];
         }
-
         private string GetRandomJaC(Dictionary<string,string> dict)
         {
             var random = new Random();
@@ -93,10 +97,8 @@ namespace Autofarmer.ViewModels
 
             return $"{jac.Key} - {jac.Value}";
         }
-
         private string GetJobFromJac(string jac) => jac[..jac.IndexOf('-')].Trim();
         private string GetCompanyFromJac(string jac) => jac[jac.IndexOf('-')..].Replace("-", "").Trim();
-
         private Dictionary<string, string> GetJACsFromFile(string filePath)
         {
             List<string> jacList = ReadFileByLines(_JACsFilePath);
@@ -112,7 +114,6 @@ namespace Autofarmer.ViewModels
         }
         private List<string> GetAccountsFromFile(string filePath) => ReadFileByLines(filePath);
         private List<string> GetDescriptionsFromFile(string filePath) => ReadFileByLines(filePath);
-
         private List<string> ReadFileByLines(string filePath)
         {
             const Int32 BufferSize = 512;
@@ -148,22 +149,26 @@ namespace Autofarmer.ViewModels
         {
             int index = AccountInfoModels.IndexOf(CurrentAccount) + 1;
             if (index != AccountInfoModels.Count)
+            {
                 CurrentAccount = AccountInfoModels[index];
+                CurrentAccountNumber = index + 1;
+            }
+                
             else
                 MessageBox.Show("Аккаунт последний");
         }
-
         void PreviousAccount()
         {
             int index = AccountInfoModels.IndexOf(CurrentAccount) - 1;
             if (index >= 0)
+            {
                 CurrentAccount = AccountInfoModels[index];
+                CurrentAccountNumber = index + 1;
+            }
             else
                 MessageBox.Show("Предыдущего аккаунта нет");
 
         }
-
-
 
         public ICommand NextAccountCommand => new RelayCommand(x => NextAccount());
         public ICommand PreviousAccountCommand => new RelayCommand(x => PreviousAccount());

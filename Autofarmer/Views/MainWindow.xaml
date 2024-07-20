@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:Autofarmer"
         mc:Ignorable="d"
         Title="MainWindow" 
-        MinHeight="600"
-        Height="600"
+        MinHeight="900"
+        Height="900"
         MinWidth="1000"
         Width="1000"
         WindowStartupLocation="CenterScreen"
@@ -33,18 +33,132 @@
             BorderThickness="1"
             HorizontalAlignment="Stretch"      
             Margin="10">
-            <TextBox
-                HorizontalAlignment="Stretch"
-                Background="AntiqueWhite"
-                TextWrapping="WrapWithOverflow"
-                Padding="10"
-                Height="auto"
-                Width="auto"
-                FontSize="24"
-                IsReadOnly="True"
-                Text="{Binding CurrentAccount.FullName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-            </TextBox>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox
+                        Grid.Column="0" 
+                        Padding="10"
+                        IsReadOnly="True"
+                        Text="{Binding CurrentAccount.Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox
+                        Grid.Column="1"
+                        HorizontalContentAlignment="Right"                 
+                        Padding="10"
+                        IsReadOnly="True"
+                        Text="{Binding CurrentAccountNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </Grid>
+
+
+                <Grid
+                    Grid.Row="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="10 0 0 0"
+                        VerticalAlignment="Center" 
+                        Text="email:"/>
+                    
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="10 0 0 0"
+                        VerticalContentAlignment="Center"
+                        IsReadOnly="True"
+                        Text="emailsample@gmail.com"/>
+                    <!--{Binding CurrentAccount.Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}-->
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalAlignment="Center" 
+                        Text="password:"/>
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        IsReadOnly="True"
+                        Text="passsample"/>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        VerticalAlignment="Center" 
+                        Text="recovery:"/>
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        VerticalContentAlignment="Center"
+                        IsReadOnly="True"
+                        Text="recoverysample@yahoo.com"/>
+                    
+                </Grid>
+                   
+                
+
+                <TextBox
+                    Grid.Row="3"
+                    VerticalContentAlignment="Top"         
+                    TextWrapping="WrapWithOverflow"                    
+                    Padding="10"
+                    IsReadOnly="True"
+                    Text="{Binding CurrentAccount.FullDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBox
+                    Grid.Row="4"
+                    VerticalContentAlignment="Center"
+                    TextWrapping="WrapWithOverflow"                    
+                    Padding="10"
+                    IsReadOnly="True"
+                    Text="{Binding CurrentAccount.Job, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <TextBox
+                    Grid.Row="5"
+                    VerticalContentAlignment="Center"
+                    TextWrapping="WrapWithOverflow"                    
+                    Padding="10"
+                    IsReadOnly="True"
+                    Text="{Binding CurrentAccount.Company, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+
+            </Grid>
         </Border>
+
 
 
         <Grid
@@ -55,7 +169,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+
             <Button
                 Grid.Column="0"
                 Margin="10"
