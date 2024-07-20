@@ -24,6 +24,7 @@ namespace Autofarmer.ViewModels
         private string _descriptionsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Descriptions.txt";
         private string _accountsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Accounts.txt";
         private string _JACsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Jobs and Companies.txt";
+        private string _emailsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Emails.txt";
         private string _modelsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Models.txt";
 
         private AccountInfoModel _currentAccount;
@@ -33,6 +34,7 @@ namespace Autofarmer.ViewModels
         public List<string> Descriptions { get; set; } = [];
         public List<string> Accounts { get; set; } = [];
         public Dictionary<string, string> JACs { get; set; } = [];
+        public List<EmailModel> Emails { get; set; } = [];
         public List<string> Models { get; set; } = [];
 
         public List<AccountInfoModel> AccountInfoModels { get; set; } = [];
@@ -62,14 +64,14 @@ namespace Autofarmer.ViewModels
             Descriptions = GetDescriptionsFromFile(_descriptionsFilePath);
             JACs = GetJACsFromFile(_JACsFilePath);
 
+            Emails = GetEmailModels(ReadFileByLines(_emailsFilePath));
+
             Models = ReadFileByLines(_modelsFilePath);
 
             AccountInfoModels = GenerateAccountInfos(Accounts);
 
             CurrentAccount = AccountInfoModels[0];
             CurrentAccountNumber = 1;
-
-            EmailQRCode = GenerateQR("gaywebsite.com");
         }
 
         private List<AccountInfoModel> GenerateAccountInfos(List<string> accounts)
@@ -77,16 +79,49 @@ namespace Autofarmer.ViewModels
             List<AccountInfoModel> accountInfoModels = [];
 
             foreach (var account in accounts)
-            {
+            { 
                 string jac = GetRandomJaC(JACs);
+
+                EmailModel email = GetRandomEmailModel(Emails);
+
                 AccountInfoModel model = new(account, GetCityFromAccountIdString(account), 
-                    GetRandomValueFromList(Descriptions), GetJobFromJac(jac), GetCompanyFromJac(jac));
+                    GetRandomValueFromList(Descriptions), GetJobFromJac(jac), GetCompanyFromJac(jac), email);
 
                 accountInfoModels.Add(model);
             }
 
             return accountInfoModels;
         }
+
+        //заменить на метод расширения IEnumarable
+        private EmailModel GetRandomEmailModel(List<EmailModel> emailModels)
+        {
+            var random = new Random();
+            int index = random.Next(emailModels.Count);
+
+            var email = emailModels[index];
+
+            emailModels.Remove(email);
+
+            return email;
+        }
+
+        private List<EmailModel> GetEmailModels(List<string> emailStrings)
+        {
+            List<EmailModel> emailModels = [];
+
+            foreach(string emailString in emailStrings)
+            {
+                string email = emailString[..emailString.IndexOf(':')];
+                string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
+                string recovery = emailString[(emailString.LastIndexOf(':') + 1)..];
+
+                emailModels.Add(new EmailModel(email, password, recovery, GenerateQR(email + '1')));
+            }
+
+            return emailModels;
+        }
+
         private string GetCityFromAccountIdString(string AccountId)
         {
             string models = string.Join("|", [.. Models]);
@@ -157,8 +192,6 @@ namespace Autofarmer.ViewModels
 
             return list;
         }
-
-
         DrawingImage GenerateQR(string value)
         {
             using var qrGenerator = new QRCodeGenerator();

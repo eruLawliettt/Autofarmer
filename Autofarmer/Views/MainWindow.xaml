@@ -9,8 +9,8 @@
         Title="MainWindow" 
         MinHeight="900"
         Height="900"
-        MinWidth="1000"
-        Width="1000"
+        MinWidth="1200"
+        Width="1200"
         WindowStartupLocation="CenterScreen"
         FontFamily="Calibri"
         FontSize="24">
@@ -97,8 +97,8 @@
                         Padding="10 0 0 0"
                         VerticalContentAlignment="Center"
                         IsReadOnly="True"
-                        Text="emailsample@gmail.com"/>
-                    <!--{Binding CurrentAccount.Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}-->
+                        Text="{Binding CurrentAccount.Email.Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    
 
                     <TextBlock
                         Grid.Row="0"
@@ -111,7 +111,8 @@
                         Grid.Column="1"
                         VerticalContentAlignment="Center"
                         IsReadOnly="True"
-                        Text="passsample"/>
+                        Text="{Binding CurrentAccount.Email.Password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    
 
                     <TextBlock
                         Grid.Row="0"
@@ -124,8 +125,9 @@
                         Grid.Column="2"
                         VerticalContentAlignment="Center"
                         IsReadOnly="True"
-                        Text="recoverysample@yahoo.com"/>
-                    
+                        Text="{Binding CurrentAccount.Email.Recovery, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
                 </Grid>
 
                 <Grid
@@ -138,7 +140,7 @@
 
                     <Image    
                         Grid.Column="0"
-                        Source="{Binding EmailQRCode}"
+                        Source="{Binding CurrentAccount.Email.QRCode}"
                         RenderOptions.EdgeMode="Aliased">
                     </Image>
 
