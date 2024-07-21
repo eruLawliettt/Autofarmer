@@ -28,6 +28,7 @@ namespace Autofarmer.Models
         public string FullDescription => $"""
             {City} ❤️
             {Description}
+            
             """;
     }
 }
