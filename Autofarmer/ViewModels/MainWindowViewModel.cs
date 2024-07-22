@@ -3,24 +3,9 @@ using Autofarmer.Services.Account;
 using Autofarmer.Services.Email;
 using Autofarmer.Services.FilesHandling;
 using Autofarmer.Views;
-using QRCoder;
-using QRCoder.Xaml;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using static QRCoder.PayloadGenerator;
 
 namespace Autofarmer.ViewModels
 {
