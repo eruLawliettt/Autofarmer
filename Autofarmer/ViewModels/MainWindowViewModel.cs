@@ -81,7 +81,7 @@ namespace Autofarmer.ViewModels
             {
                 string jac = GetRandomJaC(JACs);
 
-                EmailModel email = GetRandomEmailModel(Emails);
+                EmailModel email = GetEmailModel(Emails);
 
                 AccountInfoModel model = new(account, GetCityFromAccountIdString(account),
                     GetRandomValueFromList(Descriptions), GetJobFromJac(jac), GetCompanyFromJac(jac), email);
@@ -93,18 +93,13 @@ namespace Autofarmer.ViewModels
         }
 
         //заменить на метод расширения IEnumarable
-        private EmailModel GetRandomEmailModel(List<EmailModel> emailModels)
+        private EmailModel GetEmailModel(List<EmailModel> emailModels)
         {
-            var random = new Random();
-            int index = random.Next(emailModels.Count);
-
-            var email = emailModels[index];
-
+            var email = emailModels.First();
             emailModels.Remove(email);
 
             return email;
         }
-
         private List<EmailModel> GetEmailModels(List<string> emailStrings)
         {
             List<EmailModel> emailModels = [];
@@ -120,7 +115,6 @@ namespace Autofarmer.ViewModels
 
             return emailModels;
         }
-
         private string GetCityFromAccountIdString(string AccountId)
         {
             string models = string.Join("|", [.. Models]);
