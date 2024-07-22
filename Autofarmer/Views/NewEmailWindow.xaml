@@ -11,24 +11,50 @@
         Width="500"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-
-    <Grid>
-
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <Border>
         
-        
-        <TextBox
-            Grid.Row="0"
-            Margin="50"
-            Text="{Binding EmailString}"/>
+        <Border.Background>
+            <LinearGradientBrush
+        StartPoint="0, 2"
+        EndPoint="1, 1">
+                <GradientStop 
+            Color="Purple" 
+            Offset="0.4"/>
+                <GradientStop 
+            Color="Blue" 
+            Offset="3"/>
+            </LinearGradientBrush>
+        </Border.Background>
 
-        <Button
-            Grid.Row="1"
-            Content="Apply"
-            Margin="30"
-            Command="{Binding ChangeEmailCommand}"/>
-    </Grid>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            
+            <TextBox
+                Grid.Row="0"
+                Width="440"
+                Height="50"
+                HorizontalAlignment="Center"
+                VerticalContentAlignment="Center"
+                Background="Transparent"
+                Foreground="White"
+                Text="{Binding EmailString}"
+                Style="{StaticResource BetterTextBoxStyle}"/>
+
+            <Button
+                Grid.Row="1"
+                Content="Apply"
+                Width="200"
+                Height="50"
+                Background="Transparent"
+                Foreground="White"
+                FontSize="24"
+                Command="{Binding ChangeEmailCommand}"
+                Style="{StaticResource BetterButtonStyle}"/>
+        </Grid>
+    </Border>
 </Window>
