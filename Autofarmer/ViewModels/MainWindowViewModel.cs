@@ -226,24 +226,22 @@ namespace Autofarmer.ViewModels
                 MessageBox.Show("Предыдущего аккаунта нет");
 
         }
-
         void CopyToClipboard()
         {
             Clipboard.SetText(CurrentAccount.Email.FullEmailString);
         }
-
         void ShowNewEmailWindow()
         {
             NewEmailWindow newEmailWindow = new NewEmailWindow();
             newEmailWindow.DataContext = new NewEmailWindowViewModel(this);
             newEmailWindow.ShowDialog();
+            NextAccount();
+            PreviousAccount();
         }
 
 
         public ICommand CopyToClipboardCommand => new RelayCommand(x => CopyToClipboard());
         public ICommand ShowNewEmailWindowCommand => new RelayCommand(x => ShowNewEmailWindow());
-
-
         public ICommand NextAccountCommand => new RelayCommand(x => NextAccount());
         public ICommand PreviousAccountCommand => new RelayCommand(x => PreviousAccount());
     }

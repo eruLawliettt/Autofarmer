@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows;
 
 namespace Autofarmer.ViewModels
 {
@@ -43,6 +44,7 @@ namespace Autofarmer.ViewModels
         void ChangeEmail()
         {
             MainWindowViewModel.CurrentAccount.Email = GetEmailModelFromString(EmailString);
+            MessageBox.Show($"Старый Email заменён на {EmailString}", "Успешно!");
         }
 
         public ICommand ChangeEmailCommand => new RelayCommand(x => ChangeEmail());

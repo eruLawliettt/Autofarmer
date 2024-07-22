@@ -9,7 +9,8 @@
         Title="NewEmailWindow" 
         Height="300" 
         Width="500"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
 
