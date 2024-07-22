@@ -23,8 +23,4 @@
     <Resource Include="Images\borderless_icon.ico" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
 </Project>

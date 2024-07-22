@@ -1,4 +1,5 @@
 ﻿using Autofarmer.Models;
+using Autofarmer.Views;
 using QRCoder;
 using QRCoder.Xaml;
 using System;
@@ -106,15 +107,21 @@ namespace Autofarmer.ViewModels
 
             foreach (string emailString in emailStrings)
             {
-                string email = emailString[..emailString.IndexOf(':')];
-                string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
-                string recovery = emailString[(emailString.LastIndexOf(':') + 1)..];
-
-                emailModels.Add(new EmailModel(email, password, recovery, GenerateQR(email + '1')));
+                emailModels.Add(GetEmailModelFromString(emailString));
             }
 
             return emailModels;
         }
+
+        private EmailModel GetEmailModelFromString(string emailString)
+        {
+            string email = emailString[..emailString.IndexOf(':')];
+            string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
+            string recovery = emailString[(emailString.LastIndexOf(':') + 1)..];
+
+            return new EmailModel(email, password, recovery, GenerateQR(email + '1'));
+        }
+
         private string GetCityFromAccountIdString(string AccountId)
         {
             string models = string.Join("|", [.. Models]);
@@ -225,7 +232,18 @@ namespace Autofarmer.ViewModels
             Clipboard.SetText(CurrentAccount.Email.FullEmailString);
         }
 
+        void ShowNewEmailWindow()
+        {
+            NewEmailWindow newEmailWindow = new NewEmailWindow();
+            newEmailWindow.DataContext = new NewEmailWindowViewModel(this);
+            newEmailWindow.ShowDialog();
+        }
+
+
         public ICommand CopyToClipboardCommand => new RelayCommand(x => CopyToClipboard());
+        public ICommand ShowNewEmailWindowCommand => new RelayCommand(x => ShowNewEmailWindow());
+
+
         public ICommand NextAccountCommand => new RelayCommand(x => NextAccount());
         public ICommand PreviousAccountCommand => new RelayCommand(x => PreviousAccount());
     }

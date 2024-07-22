@@ -303,10 +303,21 @@
                             Grid.Row="0"
                             Grid.Column="2"
                             Content="Copy full email"
-                            Command="{Binding CopyToClipboardCommand}"
-                            CommandParameter="{Binding CurrentAccount.Email.FullEmailString}"/>
+                            Command="{Binding CopyToClipboardCommand}"/>
 
-                    </Grid>
+                            <Button
+                                Style="{StaticResource BetterButtonStyle}"
+                                Foreground="White"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Width="200"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Content="Change email"
+                                Command="{Binding ShowNewEmailWindowCommand}"/>
+
+
+                        </Grid>
                     
                 </Grid>
 
