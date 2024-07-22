@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Autofarmer.Models
 {
-    internal class AccountInfoModel
+    internal class Account
     {
         public string? Id { get; set; }
         public string? City { get; set; }
         public string? Description { get; set; }
         public string? Job { get; set; }
         public string? Company { get; set; }
-        public EmailModel Email { get; set; }
+        public Email Email { get; set; }
 
-        public AccountInfoModel(string id, string city, string description, string job, string company, EmailModel email)
+        public Account(string id, string city, string description, string job, string company, Email email)
         {
             Id = id;
             City = city;

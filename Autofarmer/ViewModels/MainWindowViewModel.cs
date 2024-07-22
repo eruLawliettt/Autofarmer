@@ -1,4 +1,7 @@
 ﻿using Autofarmer.Models;
+using Autofarmer.Services.Account;
+using Autofarmer.Services.Email;
+using Autofarmer.Services.FilesHandling;
 using Autofarmer.Views;
 using QRCoder;
 using QRCoder.Xaml;
@@ -7,6 +10,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -16,30 +20,33 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using static QRCoder.PayloadGenerator;
 
 namespace Autofarmer.ViewModels
 {
     internal class MainWindowViewModel : ViewModelBase
     {
-        private string _descriptionsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Descriptions.txt";
-        private string _accountsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Accounts.txt";
-        private string _JACsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Jobs and Companies.txt";
-        private string _emailsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Emails.txt";
-        private string _modelsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Models.txt";
+        private readonly string _descriptionsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Descriptions.txt";
+        private readonly string _accountsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Accounts.txt";
+        private readonly string _JACsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Jobs and Companies.txt";
+        private readonly string _emailsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Emails.txt";
+        private readonly string _modelsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Models.txt";
 
-        private AccountInfoModel _currentAccount;
+        private readonly FileService _fileService = new();
+        private readonly EmailService _emailService = new();
+        private readonly AccountService _accountService = new();
+
+        private List<Account> _accounts = [];
+        private Account _currentAccount;
         private int _currentAccountNumber;
-        private DrawingImage _emailQRCode;
+        
+        public List<Account> Accounts 
+        { 
+            get => _accounts; 
+            set => Set(ref _accounts, value, nameof(Accounts)); 
+        }
 
-        public List<string> Descriptions { get; set; } = [];
-        public List<string> Accounts { get; set; } = [];
-        public Dictionary<string, string> JACs { get; set; } = [];
-        public List<EmailModel> Emails { get; set; } = [];
-        public List<string> Models { get; set; } = [];
-
-        public List<AccountInfoModel> AccountInfoModels { get; set; } = [];
-
-        public AccountInfoModel CurrentAccount
+        public Account CurrentAccount
         {
             get { return _currentAccount; }
             set => Set(ref _currentAccount, value, nameof(CurrentAccount));
@@ -51,163 +58,52 @@ namespace Autofarmer.ViewModels
             set => Set(ref _currentAccountNumber, value, nameof(CurrentAccountNumber));
         }
 
-        public DrawingImage EmailQRCode
-        {
-            get { return _emailQRCode; }
-            set => Set(ref _emailQRCode, value, nameof(EmailQRCode));
-        }
-
 
         public MainWindowViewModel()
         {
-            Accounts = GetAccountsFromFile(_accountsFilePath);
-            Descriptions = GetDescriptionsFromFile(_descriptionsFilePath);
-            JACs = GetJACsFromFile(_JACsFilePath);
+            List<string> accountStrings = _fileService.ReadFileByLines(_accountsFilePath);
+            List<string> descriptions = _fileService.ReadFileByLines(_descriptionsFilePath);
+            Dictionary<string, string> jacs = _fileService.GetDictionaryFromFile(_JACsFilePath);
 
-            Emails = GetEmailModels(ReadFileByLines(_emailsFilePath));
+            List<Email> emailModels = _emailService.GetEmailModels(_fileService.ReadFileByLines(_emailsFilePath));
 
-            Models = ReadFileByLines(_modelsFilePath);
+            List<string> namesToCut = _fileService.ReadFileByLines(_modelsFilePath);
 
-            AccountInfoModels = GenerateAccountInfos(Accounts);
+            foreach (var accountString in accountStrings)
+            {
+                string jac = _accountService.GetRandomJaCString(jacs);
+                Email emailModel = _emailService.GetEmailModel(emailModels);
 
-            CurrentAccount = AccountInfoModels[0];
+                Account model = new(
+                    accountString, 
+                    _accountService.GetCityFromAccountIdString(accountString, namesToCut),
+                    GetRandomValueFromList(descriptions), 
+                    _accountService.GetJobFromJacString(jac), 
+                    _accountService.GetCompanyFromJacString(jac), 
+                    emailModel);
+
+                Accounts.Add(model);
+            }
+
+            CurrentAccount = Accounts[0];
             CurrentAccountNumber = 1;
         }
 
-        private List<AccountInfoModel> GenerateAccountInfos(List<string> accounts)
-        {
-            List<AccountInfoModel> accountInfoModels = [];
+        
 
-            foreach (var account in accounts)
-            {
-                string jac = GetRandomJaC(JACs);
-
-                EmailModel email = GetEmailModel(Emails);
-
-                AccountInfoModel model = new(account, GetCityFromAccountIdString(account),
-                    GetRandomValueFromList(Descriptions), GetJobFromJac(jac), GetCompanyFromJac(jac), email);
-
-                accountInfoModels.Add(model);
-            }
-
-            return accountInfoModels;
-        }
-
-        //заменить на метод расширения IEnumarable
-        private EmailModel GetEmailModel(List<EmailModel> emailModels)
-        {
-            var email = emailModels.First();
-            emailModels.Remove(email);
-
-            return email;
-        }
-        private List<EmailModel> GetEmailModels(List<string> emailStrings)
-        {
-            List<EmailModel> emailModels = [];
-
-            foreach (string emailString in emailStrings)
-            {
-                emailModels.Add(GetEmailModelFromString(emailString));
-            }
-
-            return emailModels;
-        }
-
-        private EmailModel GetEmailModelFromString(string emailString)
-        {
-            string email = emailString[..emailString.IndexOf(':')];
-            string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
-            string recovery = emailString[(emailString.LastIndexOf(':') + 1)..];
-
-            return new EmailModel(email, password, recovery, GenerateQR(email + '1'));
-        }
-
-        private string GetCityFromAccountIdString(string AccountId)
-        {
-            string models = string.Join("|", [.. Models]);
-            char[] nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-
-            var clean = Regex.Replace(AccountId, models, "", RegexOptions.IgnoreCase);
-            clean = new string(clean.Where(c => !nums.Contains(c)).ToArray()).Trim();
-
-            return clean;
-        }
-        private string GetRandomValueFromList(List<string> list)
+        public string GetRandomValueFromList(List<string> list)
         {
             var random = new Random();
             int index = random.Next(list.Count);
             return list[index];
         }
-        private string GetRandomJaC(Dictionary<string, string> dict)
-        {
-            var random = new Random();
-            int index = random.Next(dict.Count);
-
-            var jac = dict.ElementAt(index);
-
-            return $"{jac.Key} - {jac.Value}";
-        }
-        private string GetJobFromJac(string jac) => jac[..jac.IndexOf('-')].Trim();
-        private string GetCompanyFromJac(string jac) => jac[jac.IndexOf('-')..].Replace("-", "").Trim();
-        private Dictionary<string, string> GetJACsFromFile(string filePath)
-        {
-            List<string> jacList = ReadFileByLines(_JACsFilePath);
-            Dictionary<string, string> JACPairs = [];
-
-            foreach (string jac in jacList)
-            {
-                var item = jac.Split('-');
-                JACPairs.Add(item[0], item[1]);
-            }
-
-            return JACPairs;
-        }
-        private List<string> GetAccountsFromFile(string filePath) => ReadFileByLines(filePath);
-        private List<string> GetDescriptionsFromFile(string filePath) => ReadFileByLines(filePath);
-        private List<string> ReadFileByLines(string filePath)
-        {
-            const Int32 BufferSize = 512;
-
-            using var fileStream = File.OpenRead(filePath);
-            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
-
-            bool IsProcessing = true;
-            string line;
-            List<string> list = [];
-
-            while (IsProcessing)
-            {
-                line = streamReader.ReadLine();
-
-                if (line != null)
-                {
-                    if (line == String.Empty || line == " ")
-                        continue;
-                    list.Add(line);
-                }
-
-                else
-                    IsProcessing = false;
-            }
-
-            return list;
-        }
-        DrawingImage GenerateQR(string value)
-        {
-            using var qrGenerator = new QRCodeGenerator();
-            using var qrCodeData = qrGenerator.CreateQrCode(value, QRCodeGenerator.ECCLevel.Q);
-            XamlQRCode qrCode = new XamlQRCode(qrCodeData);
-            DrawingImage qrCodeAsXaml = qrCode.GetGraphic(20);
-            return qrCodeAsXaml;
-
-        }
 
         void NextAccount()
         {
-            int index = AccountInfoModels.IndexOf(CurrentAccount) + 1;
-            if (index != AccountInfoModels.Count)
+            int index = Accounts.IndexOf(CurrentAccount) + 1;
+            if (index != Accounts.Count)
             {
-                CurrentAccount = AccountInfoModels[index];
+                CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
             }
 
@@ -216,10 +112,10 @@ namespace Autofarmer.ViewModels
         }
         void PreviousAccount()
         {
-            int index = AccountInfoModels.IndexOf(CurrentAccount) - 1;
+            int index = Accounts.IndexOf(CurrentAccount) - 1;
             if (index >= 0)
             {
-                CurrentAccount = AccountInfoModels[index];
+                CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
             }
             else
@@ -230,6 +126,7 @@ namespace Autofarmer.ViewModels
         {
             Clipboard.SetText(CurrentAccount.Email.FullEmailString);
         }
+
         void ShowNewEmailWindow()
         {
             NewEmailWindow newEmailWindow = new NewEmailWindow();

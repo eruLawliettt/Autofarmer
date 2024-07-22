@@ -22,13 +22,13 @@ namespace Autofarmer.ViewModels
             MainWindowViewModel = vmSender;
         }
 
-        private EmailModel GetEmailModelFromString(string emailString)
+        private Email GetEmailModelFromString(string emailString)
         {
             string email = emailString[..emailString.IndexOf(':')];
             string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
             string recovery = emailString[(emailString.LastIndexOf(':') + 1)..];
 
-            return new EmailModel(email, password, recovery, GenerateQR(email + '1'));
+            return new Email(email, password, recovery, GenerateQR(email + '1'));
         }
 
         DrawingImage GenerateQR(string value)
@@ -43,8 +43,21 @@ namespace Autofarmer.ViewModels
 
         void ChangeEmail()
         {
-            MainWindowViewModel.CurrentAccount.Email = GetEmailModelFromString(EmailString);
-            MessageBox.Show($"Старый Email заменён на {EmailString}", "Успешно!");
+
+            try
+            {
+                if (EmailString == null || EmailString == String.Empty)
+                    MessageBox.Show("Поле пустое, введи почту.", "Ошибка.");
+                else
+                {
+                    MainWindowViewModel.CurrentAccount.Email = GetEmailModelFromString(EmailString);
+                    MessageBox.Show($"Старый Email заменён на {EmailString}", "Успешно!");
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Ты ввёл хуйню, введи почту.", "Ошибка.");
+            }
         }
 
         public ICommand ChangeEmailCommand => new RelayCommand(x => ChangeEmail());
