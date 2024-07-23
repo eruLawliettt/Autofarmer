@@ -21,6 +21,8 @@ namespace Autofarmer.ViewModels
         private readonly EmailService _emailService = new();
         private readonly AccountService _accountService = new();
 
+        private const int TotalAccounts = 40;
+
         private List<Account> _accounts = [];
         private Account _currentAccount;
         private int _currentAccountNumber;
@@ -117,10 +119,18 @@ namespace Autofarmer.ViewModels
             NewEmailWindow newEmailWindow = new NewEmailWindow();
             newEmailWindow.DataContext = new NewEmailWindowViewModel(this);
             newEmailWindow.ShowDialog();
-            NextAccount();
-            PreviousAccount();
+            if (CurrentAccountNumber == TotalAccounts)
+            {
+                PreviousAccount();
+                NextAccount();
+            }
+            else
+            {
+                NextAccount();
+                PreviousAccount();
+            }
+            
         }
-
 
         public ICommand CopyToClipboardCommand => new RelayCommand(x => CopyToClipboard());
         public ICommand ShowNewEmailWindowCommand => new RelayCommand(x => ShowNewEmailWindow());
