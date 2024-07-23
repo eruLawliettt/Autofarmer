@@ -14,15 +14,12 @@ namespace Autofarmer.Services.Account
 {
     internal class AccountService : IAccountService
     {
-        public string GetCityFromAccountIdString(string accountId, List<string> namesToCut)
+        public string GetCityFromAccountIdString(string accountId)
         {
-            string banWords = string.Join("|", [.. namesToCut]);
-            char[] nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+            var city = accountId[accountId.IndexOf(' ')..];
+            city = city[..city.LastIndexOf(' ')].Trim();
 
-            var clean = Regex.Replace(accountId, banWords, "", RegexOptions.IgnoreCase);
-            clean = new string(clean.Where(c => !nums.Contains(c)).ToArray()).Trim();
-
-            return clean;
+            return city;
         }
 
         public string GetRandomJaCString(Dictionary<string, string> jaCs)

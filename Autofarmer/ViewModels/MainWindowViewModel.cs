@@ -15,8 +15,7 @@ namespace Autofarmer.ViewModels
         private readonly string _accountsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Accounts.txt";
         private readonly string _JACsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Jobs and Companies.txt";
         private readonly string _emailsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Emails.txt";
-        private readonly string _modelsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Models.txt";
-
+     
         private readonly FileService _fileService = new();
         private readonly EmailService _emailService = new();
         private readonly AccountService _accountService = new();
@@ -54,8 +53,7 @@ namespace Autofarmer.ViewModels
 
             List<Email> emailModels = _emailService.GetEmailModels(_fileService.ReadFileByLines(_emailsFilePath));
 
-            List<string> namesToCut = _fileService.ReadFileByLines(_modelsFilePath);
-
+           
             foreach (var accountString in accountStrings)
             {
                 string jac = _accountService.GetRandomJaCString(jacs);
@@ -63,7 +61,7 @@ namespace Autofarmer.ViewModels
 
                 Account model = new(
                     accountString, 
-                    _accountService.GetCityFromAccountIdString(accountString, namesToCut),
+                    _accountService.GetCityFromAccountIdString(accountString),
                     GetRandomValueFromList(descriptions), 
                     _accountService.GetJobFromJacString(jac), 
                     _accountService.GetCompanyFromJacString(jac), 
