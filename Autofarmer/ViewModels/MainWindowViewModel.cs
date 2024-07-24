@@ -4,6 +4,7 @@ using Autofarmer.Services.Email;
 using Autofarmer.Services.FilesHandling;
 using Autofarmer.Views;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 
@@ -21,6 +22,8 @@ namespace Autofarmer.ViewModels
         private readonly AccountService _accountService = new();
 
         private const int TotalAccounts = 40;
+
+        public CityGeolocation[]? CityGeo { get; set; }
 
         private List<Account> _accounts = [];
         private Account _currentAccount;
@@ -74,6 +77,7 @@ namespace Autofarmer.ViewModels
             CurrentAccountNumber = 1;
         }
 
+     
         
 
         public string GetRandomValueFromList(List<string> list)

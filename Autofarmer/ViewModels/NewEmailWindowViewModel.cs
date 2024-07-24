@@ -30,7 +30,7 @@ namespace Autofarmer.ViewModels
 
             return new Email(email, password, recovery, GenerateQR(email + '1'));
         }
-
+        
         DrawingImage GenerateQR(string value)
         {
             using var qrGenerator = new QRCodeGenerator();
