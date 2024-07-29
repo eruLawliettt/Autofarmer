@@ -1,4 +1,5 @@
 ﻿using Autofarmer.Models;
+using Autofarmer.PseudoDatabase;
 using Autofarmer.Services.Account;
 using Autofarmer.Services.Email;
 using Autofarmer.Services.FilesHandling;
@@ -23,12 +24,14 @@ namespace Autofarmer.ViewModels
 
         private const int TotalAccounts = 40;
 
-        public CityGeolocation[]? CityGeo { get; set; }
+        
 
         private List<Account> _accounts = [];
         private Account _currentAccount;
         private int _currentAccountNumber;
-        
+        private GeoPoint _currentGeo;
+
+
         public List<Account> Accounts 
         { 
             get => _accounts; 
@@ -46,7 +49,11 @@ namespace Autofarmer.ViewModels
             get { return _currentAccountNumber; }
             set => Set(ref _currentAccountNumber, value, nameof(CurrentAccountNumber));
         }
-
+        public GeoPoint CurrentGeo
+        {
+            get { return _currentGeo; }
+            set => Set(ref _currentGeo, value, nameof(CurrentGeo));
+        }
 
         public MainWindowViewModel()
         {
@@ -75,10 +82,20 @@ namespace Autofarmer.ViewModels
 
             CurrentAccount = Accounts[0];
             CurrentAccountNumber = 1;
+            SetGeo();
         }
 
-     
-        
+
+        void SetGeo()
+        {
+            try
+            {
+                CurrentGeo = null;
+                var location = GeoDataBase.CityGeolocations.FirstOrDefault(x => x.City == CurrentAccount.City);
+                CurrentGeo = _accountService.GetGeolocation(location);
+            }
+            catch { }
+        }
 
         public string GetRandomValueFromList(List<string> list)
         {
@@ -94,6 +111,7 @@ namespace Autofarmer.ViewModels
             {
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
+                SetGeo();
             }
 
             else
@@ -106,6 +124,7 @@ namespace Autofarmer.ViewModels
             {
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
+                SetGeo();
             }
             else
                 MessageBox.Show("Предыдущего аккаунта нет");

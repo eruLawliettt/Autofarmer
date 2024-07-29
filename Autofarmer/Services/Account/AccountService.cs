@@ -17,11 +17,17 @@ namespace Autofarmer.Services.Account
     {
         public GeoPoint GetGeolocation(CityGeolocation cityGeolocation)
         {
-            var random = new Random();
-            double latitude = random.NextDouble() * (cityGeolocation.MaximalLatitude - cityGeolocation.MinimalLatitude) + cityGeolocation.MinimalLatitude;
-            double longitude = random.NextDouble() * (cityGeolocation.MaximalLongitude - cityGeolocation.MinimalLongitude) + cityGeolocation.MinimalLongitude;
+            if (cityGeolocation == null)
+                return new GeoPoint(0, 0);
 
-            return new GeoPoint(latitude, longitude);     
+            else
+            {
+                var random = new Random();
+                double latitude = random.NextDouble() * (cityGeolocation.MaximalLatitude - cityGeolocation.MinimalLatitude) + cityGeolocation.MinimalLatitude;
+                double longitude = random.NextDouble() * (cityGeolocation.MaximalLongitude - cityGeolocation.MinimalLongitude) + cityGeolocation.MinimalLongitude;
+
+                return new GeoPoint(Math.Round(latitude, 8), Math.Round(longitude, 8));
+            }
         }
 
         public string GetCityFromAccountIdString(string accountId)

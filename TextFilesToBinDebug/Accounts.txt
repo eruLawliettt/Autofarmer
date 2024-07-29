@@ -1,0 +1,40 @@
+ANNA New York 4
+ANNA Los Angeles 5
+ANNA Chicago 4
+ANNA Philadelphia 4
+ANNA Phoenix 3
+ANNA Oakville 1
+ANNA Richmond 1
+ANNA Richmond Hill 1
+ANNA Burlington 1
+ANNA Oshawa 1
+ANNA Dresden 3
+ANNA Hanover 3
+ANNA Nuremberg 3
+ANNA Duisburg 3
+ANNA Bochum 3
+ANNA Ennis 4
+ANNA Carlow 3
+ANNA Kilkenny 3
+ANNA Naas 3
+ANNA Tralee 3
+ANNA Deventer 2
+ANNA Amstelveen 2
+ANNA Helmond 1
+ANNA Oss 1
+ANNA Schiedam 2
+ANNA Brussels 4
+ANNA Antwerp 5
+ANNA Ghent 4
+ANNA Charleroi 5
+ANNA Liège 6
+ANNA Oslo 1
+ANNA Bergen 2
+ANNA Trondheim 4
+ANNA Sandvika 1
+ANNA Ålesund 2
+ANNA Phaju 1
+ANNA Jeju 1
+ANNA Yijonbu 1
+ANNA Kumi 1
+ANNA Kimpo 1

@@ -1,0 +1,40 @@
+Nurse - Medicine
+Teacher - Kids
+Lawyer - Government
+Doctor - Medicine
+Social worker - Me
+Psychologist - Freelance
+Accountant - Me
+Chef - Cafe
+Architect - Freelance
+Journalist - Freelance
+Graphic designer - My own startup
+Photographer - Freelance
+Sales representative - Market
+Marketing manager - Supermarket
+Human resources manager - IT Company
+Customer service representative - IT Company
+Event planner - Me
+Makeup artist - Freelance
+Hair stylist - My own studio
+Interior designer - Freelance
+Fashion designer - Me
+Banker - Bank
+Nonprofit administrator - Me
+Research scientist - IT Company
+Librarian - Libruary
+Artist - Art
+Musician - Art
+Writer - Me
+Historian - University
+Translator - Freelance
+Dental hygienist - Clinic
+Physical therapist - Clinic
+Occupational therapist - Clinic
+Speech therapist - Me
+Veterinarian - Animal Clinic
+Art teacher - Art
+Ballet dancer - Art
+Fitness instructor - Gym
+Yoga teacher - Gym
+Pilates instructor - Gym

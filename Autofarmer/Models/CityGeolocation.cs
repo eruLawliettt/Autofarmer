@@ -14,12 +14,12 @@ namespace Autofarmer.Models
         public double MinimalLongitude { get; set; }
         public double MaximalLongitude { get; set; }
 
-        public CityGeolocation(string city, double minLat, double maxLat, double minLong, double maxLong)
+        public CityGeolocation(string city, double minLat, double minLong, double maxLat, double maxLong)
         {
             City = city;
             MinimalLatitude = minLat;
-            MaximalLatitude = maxLat;
             MinimalLongitude = minLong;
+            MaximalLatitude = maxLat;
             MaximalLongitude = maxLong;
         }
 
