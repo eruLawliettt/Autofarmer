@@ -1,6 +1,7 @@
 ﻿using Autofarmer.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,15 +15,27 @@ namespace Autofarmer.Services.Account
 {
     internal class AccountService : IAccountService
     {
-        public string GetCityFromAccountIdString(string accountId, List<string> namesToCut)
+        public GeoPoint GetGeolocation(CityGeolocation cityGeolocation)
         {
-            string banWords = string.Join("|", [.. namesToCut]);
-            char[] nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+            if (cityGeolocation == null)
+                return new GeoPoint(0, 0);
 
-            var clean = Regex.Replace(accountId, banWords, "", RegexOptions.IgnoreCase);
-            clean = new string(clean.Where(c => !nums.Contains(c)).ToArray()).Trim();
+            else
+            {
+                var random = new Random();
+                double latitude = random.NextDouble() * (cityGeolocation.MaximalLatitude - cityGeolocation.MinimalLatitude) + cityGeolocation.MinimalLatitude;
+                double longitude = random.NextDouble() * (cityGeolocation.MaximalLongitude - cityGeolocation.MinimalLongitude) + cityGeolocation.MinimalLongitude;
 
-            return clean;
+                return new GeoPoint(Math.Round(latitude, 8), Math.Round(longitude, 8));
+            }
+        }
+
+        public string GetCityFromAccountIdString(string accountId)
+        {
+            var city = accountId[accountId.IndexOf(' ')..];
+            city = city[..city.LastIndexOf(' ')].Trim();
+
+            return city;
         }
 
         public string GetRandomJaCString(Dictionary<string, string> jaCs)

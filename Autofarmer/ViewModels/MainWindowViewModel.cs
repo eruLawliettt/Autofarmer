@@ -1,9 +1,11 @@
 ﻿using Autofarmer.Models;
+using Autofarmer.PseudoDatabase;
 using Autofarmer.Services.Account;
 using Autofarmer.Services.Email;
 using Autofarmer.Services.FilesHandling;
 using Autofarmer.Views;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 
@@ -15,16 +17,21 @@ namespace Autofarmer.ViewModels
         private readonly string _accountsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Accounts.txt";
         private readonly string _JACsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Jobs and Companies.txt";
         private readonly string _emailsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Emails.txt";
-        private readonly string _modelsFilePath = Path.GetDirectoryName(Environment.ProcessPath) + "/TextFiles/Models.txt";
-
+     
         private readonly FileService _fileService = new();
         private readonly EmailService _emailService = new();
         private readonly AccountService _accountService = new();
 
+        private const int TotalAccounts = 40;
+
+        
+
         private List<Account> _accounts = [];
         private Account _currentAccount;
         private int _currentAccountNumber;
-        
+        private GeoPoint _currentGeo;
+
+
         public List<Account> Accounts 
         { 
             get => _accounts; 
@@ -42,7 +49,11 @@ namespace Autofarmer.ViewModels
             get { return _currentAccountNumber; }
             set => Set(ref _currentAccountNumber, value, nameof(CurrentAccountNumber));
         }
-
+        public GeoPoint CurrentGeo
+        {
+            get { return _currentGeo; }
+            set => Set(ref _currentGeo, value, nameof(CurrentGeo));
+        }
 
         public MainWindowViewModel()
         {
@@ -52,8 +63,7 @@ namespace Autofarmer.ViewModels
 
             List<Email> emailModels = _emailService.GetEmailModels(_fileService.ReadFileByLines(_emailsFilePath));
 
-            List<string> namesToCut = _fileService.ReadFileByLines(_modelsFilePath);
-
+           
             foreach (var accountString in accountStrings)
             {
                 string jac = _accountService.GetRandomJaCString(jacs);
@@ -61,7 +71,7 @@ namespace Autofarmer.ViewModels
 
                 Account model = new(
                     accountString, 
-                    _accountService.GetCityFromAccountIdString(accountString, namesToCut),
+                    _accountService.GetCityFromAccountIdString(accountString),
                     GetRandomValueFromList(descriptions), 
                     _accountService.GetJobFromJacString(jac), 
                     _accountService.GetCompanyFromJacString(jac), 
@@ -72,9 +82,20 @@ namespace Autofarmer.ViewModels
 
             CurrentAccount = Accounts[0];
             CurrentAccountNumber = 1;
+            SetGeo();
         }
 
-        
+
+        void SetGeo()
+        {
+            try
+            {
+                CurrentGeo = null;
+                var location = GeoDataBase.CityGeolocations.FirstOrDefault(x => x.City == CurrentAccount.City);
+                CurrentGeo = _accountService.GetGeolocation(location);
+            }
+            catch { }
+        }
 
         public string GetRandomValueFromList(List<string> list)
         {
@@ -90,6 +111,7 @@ namespace Autofarmer.ViewModels
             {
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
+                SetGeo();
             }
 
             else
@@ -102,6 +124,7 @@ namespace Autofarmer.ViewModels
             {
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
+                SetGeo();
             }
             else
                 MessageBox.Show("Предыдущего аккаунта нет");
@@ -117,10 +140,18 @@ namespace Autofarmer.ViewModels
             NewEmailWindow newEmailWindow = new NewEmailWindow();
             newEmailWindow.DataContext = new NewEmailWindowViewModel(this);
             newEmailWindow.ShowDialog();
-            NextAccount();
-            PreviousAccount();
+            if (CurrentAccountNumber == TotalAccounts)
+            {
+                PreviousAccount();
+                NextAccount();
+            }
+            else
+            {
+                NextAccount();
+                PreviousAccount();
+            }
+            
         }
-
 
         public ICommand CopyToClipboardCommand => new RelayCommand(x => CopyToClipboard());
         public ICommand ShowNewEmailWindowCommand => new RelayCommand(x => ShowNewEmailWindow());
