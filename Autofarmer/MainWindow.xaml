@@ -6,15 +6,14 @@
         xmlns:vm="clr-namespace:Autofarmer.ViewModels"
         xmlns:local="clr-namespace:Autofarmer"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        MinHeight="900"
+        Title="Mr Farmer by Lawliet" 
         Height="900"
-        MinWidth="1200"
         Width="1200"
         WindowStartupLocation="CenterScreen"
         FontFamily="Calibri"
         Foreground="White"
         FontSize="28"
+        ResizeMode="NoResize"
         Icon="Images/borderless_icon.ico">
     
     
@@ -220,7 +219,7 @@
                             TextWrapping="WrapWithOverflow"                    
                             Padding="10"
                             IsReadOnly="True"
-                            Text="{Binding CurrentGeo.Longitude }"/>
+                            Text="{Binding CurrentGeo.Longitude}"/>
 
                         <TextBox 
                             Grid.Row="1"
