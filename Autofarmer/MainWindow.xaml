@@ -127,7 +127,6 @@
                         IsReadOnly="True"
                         Text="{Binding CurrentAccount.Email.Address, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     
-
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="1"
@@ -144,7 +143,6 @@
                         IsReadOnly="True"
                         Text="{Binding CurrentAccount.Email.Password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     
-
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="2"
@@ -160,7 +158,6 @@
                         VerticalContentAlignment="Center"
                         IsReadOnly="True"
                         Text="{Binding CurrentAccount.Email.Recovery, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-
 
                 </Grid>
 
@@ -179,36 +176,36 @@
                         RenderOptions.EdgeMode="Aliased">
                     </Image>
 
-                    <Grid
+                        <Grid
                         Grid.Column="1"
                         Margin="0">
-                        
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.5*"/>
-                            <ColumnDefinition Width="1.5*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
                             Grid.Column="1"
                             Grid.Row="0"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             Text="Долгота"/>
-                        
-                        <TextBlock
+
+                            <TextBlock
                             Grid.Column="0"
                             Grid.Row="0"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             Text="Широта"/>
 
-                        <TextBox 
+                            <TextBox 
                             Grid.Row="1"
                             Grid.Column="1"
                             Foreground="White"
@@ -221,7 +218,7 @@
                             IsReadOnly="True"
                             Text="{Binding CurrentGeo.Longitude}"/>
 
-                        <TextBox 
+                            <TextBox 
                             Grid.Row="1"
                             Grid.Column="0"
                             Foreground="White"
@@ -234,7 +231,7 @@
                             IsReadOnly="True"
                             Text="{Binding CurrentGeo.Latitude}"/>
 
-                        <Button
+                            <Button
                             Style="{StaticResource BetterButtonStyle}"
                             Foreground="White"
                             Background="Transparent"
@@ -260,10 +257,8 @@
                                 Content="Change email"
                                 Command="{Binding ShowNewEmailWindowCommand}"/>
 
-
                         </Grid>
-                    
-                </Grid>
+                    </Grid>
 
                 <TextBox
                     Grid.Row="3"
@@ -287,8 +282,8 @@
                     Padding="10"
                     IsReadOnly="True"
                     Text="{Binding CurrentAccount.Job, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                
-                <TextBox
+
+                    <TextBox
                     Grid.Row="5"
                     Foreground="White"
                     Background="Transparent"
@@ -298,13 +293,9 @@
                     Padding="10"
                     IsReadOnly="True"
                     Text="{Binding CurrentAccount.Company, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-
-
-            </Grid>
+                    
+                </Grid>
         </Border>
-
-
 
         <Grid
             Grid.Row="1"            
