@@ -9,8 +9,7 @@ namespace Autofarmer.Services.Account
 {
     internal interface IAccountService
     {
-        public GeoPoint GetGeolocation(CityGeolocation cityGeolocation);
-
+        public GeoPoint GetGeolocation(string city);
         public string GetCityFromAccountIdString(string accountId);
         public string GetRandomJaCString(Dictionary<string, string> jaCs);
         public string GetJobFromJacString(string jac);

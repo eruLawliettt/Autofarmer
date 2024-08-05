@@ -10,15 +10,17 @@ namespace Autofarmer.Models
     {
         public string? Id { get; set; }
         public string? City { get; set; }
+        public GeoPoint GeoLocation { get; set; }
         public string? Description { get; set; }
         public string? Job { get; set; }
         public string? Company { get; set; }
         public Email Email { get; set; }
 
-        public Account(string id, string city, string description, string job, string company, Email email)
+        public Account(string id, string city, GeoPoint geoLocation, string description, string job, string company, Email email)
         {
             Id = id;
             City = city;
+            GeoLocation = geoLocation;
             Description = description;
             Job = job;
             Company = company;

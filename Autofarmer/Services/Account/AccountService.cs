@@ -1,4 +1,5 @@
 ﻿using Autofarmer.Models;
+using Autofarmer.PseudoDatabase;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,8 +16,10 @@ namespace Autofarmer.Services.Account
 {
     internal class AccountService : IAccountService
     {
-        public GeoPoint GetGeolocation(CityGeolocation cityGeolocation)
+        public GeoPoint GetGeolocation(string city)
         {
+            var cityGeolocation = GeoDataBase.CityGeolocations.FirstOrDefault(x => x.City == city);
+
             if (cityGeolocation == null)
                 return new GeoPoint(0, 0);
 

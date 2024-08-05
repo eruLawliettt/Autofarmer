@@ -216,7 +216,7 @@
                             TextWrapping="WrapWithOverflow"                    
                             Padding="10"
                             IsReadOnly="True"
-                            Text="{Binding CurrentGeo.Longitude}"/>
+                            Text="{Binding CurrentAccount.GeoLocation.Longitude}"/>
 
                             <TextBox 
                             Grid.Row="1"
@@ -229,7 +229,7 @@
                             TextWrapping="WrapWithOverflow"                    
                             Padding="10"
                             IsReadOnly="True"
-                            Text="{Binding CurrentGeo.Latitude}"/>
+                            Text="{Binding CurrentAccount.GeoLocation.Latitude}"/>
 
                             <Button
                             Style="{StaticResource BetterButtonStyle}"

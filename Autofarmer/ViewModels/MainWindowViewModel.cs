@@ -27,8 +27,6 @@ namespace Autofarmer.ViewModels
         private List<Account> _accounts = [];
         private Account _currentAccount;
         private int _currentAccountNumber;
-        private GeoPoint _currentGeo;
-
 
         public List<Account> Accounts 
         { 
@@ -47,11 +45,6 @@ namespace Autofarmer.ViewModels
             get { return _currentAccountNumber; }
             set => Set(ref _currentAccountNumber, value, nameof(CurrentAccountNumber));
         }
-        public GeoPoint CurrentGeo
-        {
-            get { return _currentGeo; }
-            set => Set(ref _currentGeo, value, nameof(CurrentGeo));
-        }
 
         public MainWindowViewModel()
         {
@@ -65,14 +58,20 @@ namespace Autofarmer.ViewModels
             foreach (var accountString in accountStrings)
             {
                 string jac = _accountService.GetRandomJaCString(jacs);
+                string city = _accountService.GetCityFromAccountIdString(accountString);
+                GeoPoint geoLocation = _accountService.GetGeolocation(city);
+                string description = GetRandomValueFromList(descriptions);
+                string job = _accountService.GetJobFromJacString(jac);
+                string company = _accountService.GetCompanyFromJacString(jac);
                 Email emailModel = _emailService.GetEmailModel(emailModels);
 
                 Account model = new(
                     accountString, 
-                    _accountService.GetCityFromAccountIdString(accountString),
-                    GetRandomValueFromList(descriptions), 
-                    _accountService.GetJobFromJacString(jac), 
-                    _accountService.GetCompanyFromJacString(jac), 
+                    city,
+                    geoLocation,
+                    description,
+                    job,
+                    company, 
                     emailModel);
 
                 Accounts.Add(model);
@@ -80,19 +79,6 @@ namespace Autofarmer.ViewModels
 
             CurrentAccount = Accounts[0];
             CurrentAccountNumber = 1;
-            SetGeo();
-        }
-
-
-        void SetGeo()
-        {
-            try
-            {
-                CurrentGeo = null;
-                var location = GeoDataBase.CityGeolocations.FirstOrDefault(x => x.City == CurrentAccount.City);
-                CurrentGeo = _accountService.GetGeolocation(location);
-            }
-            catch { }
         }
 
         public string GetRandomValueFromList(List<string> list)
@@ -109,7 +95,6 @@ namespace Autofarmer.ViewModels
             {
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
-                SetGeo();
             }
 
             else
@@ -123,7 +108,6 @@ namespace Autofarmer.ViewModels
             {
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
-                SetGeo();
             }
             else
                 MessageBox.Show("Предыдущего аккаунта нет");
