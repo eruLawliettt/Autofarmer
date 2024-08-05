@@ -24,8 +24,6 @@ namespace Autofarmer.ViewModels
 
         private const int TotalAccounts = 40;
 
-        
-
         private List<Account> _accounts = [];
         private Account _currentAccount;
         private int _currentAccountNumber;
@@ -117,6 +115,7 @@ namespace Autofarmer.ViewModels
             else
                 MessageBox.Show("Аккаунт последний");
         }
+
         void PreviousAccount()
         {
             int index = Accounts.IndexOf(CurrentAccount) - 1;
@@ -130,6 +129,7 @@ namespace Autofarmer.ViewModels
                 MessageBox.Show("Предыдущего аккаунта нет");
 
         }
+
         void CopyToClipboard()
         {
             Clipboard.SetText(CurrentAccount.Email.FullEmailString);

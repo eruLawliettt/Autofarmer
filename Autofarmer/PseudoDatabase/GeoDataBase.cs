@@ -39,7 +39,6 @@ namespace Autofarmer.PseudoDatabase
                  new CityGeolocation("Seattle", 47.58104186, -122.33774185, 47.62502494, -122.31044769),
                  new CityGeolocation("Denver", 39.69767751, -105.02758026, 39.77767195, -104.91462708),
 
-
                 //new zealand partial
                 new CityGeolocation("Auckland", -36.89678263, 174.73257065, -36.84610922, 174.78715897),
                 new CityGeolocation("Christchurch", -43.55153408, 172.61100769, -43.51519470, 172.66250610),
@@ -52,8 +51,7 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("Palmerston", -40.37165889, 175.59310913, -40.33803961, 175.63499451),
                 new CityGeolocation("Palmerston", -39.51013316, 176.88537598, -39.48059302, 176.91936493),
 
-
-                //canada partial
+                //canada COMPLETE
                 new CityGeolocation("Toronto", 43.64154137, -79.45449829, 43.76068042, -79.30824280),
                 new CityGeolocation("Montreal", 45.45338760, -73.72512817, 45.56983236, -73.54728699),
                 new CityGeolocation("Calgary", 50.99949673, -114.13558960, 51.08152780, -113.96186829),
@@ -64,7 +62,23 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("Vancouver", 49.21737285, -123.18145752, 49.27990050, -123.02421570),
                 new CityGeolocation("Brampton", 43.65296912, -79.80091095, 43.71553473, -79.72846985),
                 new CityGeolocation("Scarborough", 43.74803313, -79.28369522, 43.79104777, -79.22721863),
-
+                new CityGeolocation("Hamilton", 43.23069601, -79.90047455, 43.27033118, -79.83575821),
+                new CityGeolocation("Surrey", 49.10399413, -122.89100647, 49.20929900, -122.77187347),
+                new CityGeolocation("Halifax", 44.63592543, -63.59942436, 44.65540537, -63.58071327),
+                new CityGeolocation("Laval", 45.46783598, -73.61011505, 45.51597052, -73.55329514),
+                new CityGeolocation("London", 42.95705068, -81.26037598, 43.00753438, -81.20956421),
+                new CityGeolocation("Markham", 43.82536290, -79.36214447, 43.87661302, -79.29416656),
+                new CityGeolocation("Gatineau", 45.39519541, -75.71537018, 45.42833496, -75.67339897),
+                new CityGeolocation("Saskatoon", 52.12350313, -106.67707443, 52.13530563, -106.65617466),
+                new CityGeolocation("Kitchener", 43.43222913, -80.50678253, 43.46064458, -80.47991753),
+                new CityGeolocation("Longueuil", 45.50526414, -73.49475861, 45.52920030, -73.44120026),
+                new CityGeolocation("Burnaby", 49.22230622, -123.01237106, 49.25906675, -122.97580719),
+                new CityGeolocation("Regina", 50.44187322, -104.64039803, 50.46580920, -104.58417892),
+                new CityGeolocation("Oakville", 43.44388357, -79.67362404, 43.45167272, -79.66220856),
+                new CityGeolocation("Richmond", 49.13387945, -123.18214417, 49.17115466, -123.11553955),
+                new CityGeolocation("Richmond Hill", 43.86176245, -79.44934845, 43.88787224, -79.42359924),
+                new CityGeolocation("Burlington", 43.32180586, -79.81704712, 43.34540467, -79.78185654),
+                new CityGeolocation("Oshawa", 43.87314822, -78.87634277, 43.91533086, -78.84304047),
 
                 //sweden COMPLETE
                 new CityGeolocation("Stockholm", 59.31059273, 18.04281235, 59.34859561, 18.09997559),
@@ -273,6 +287,7 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("West Bromwich", 52.51371370, -2.00603485, 52.52243593, -1.98698044),
 
                 //hungary none
+
                 //spain none
 
                 //belgium COMPLETE
