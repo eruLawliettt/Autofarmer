@@ -30,7 +30,7 @@
                     Color="Purple" 
                     Offset="0.4"/>
                 <GradientStop 
-                    Color="Blue" 
+                    Color="Orange" 
                     Offset="3"/>
             </LinearGradientBrush>
         </Border.Background>

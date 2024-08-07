@@ -122,7 +122,7 @@ namespace Autofarmer.ViewModels
         void ShowNewEmailWindow()
         {
             NewEmailWindow newEmailWindow = new NewEmailWindow();
-            newEmailWindow.DataContext = new NewEmailWindowViewModel(this);
+            newEmailWindow.DataContext = new NewEmailWindowViewModel(this, newEmailWindow);
             newEmailWindow.ShowDialog();
             if (CurrentAccountNumber == TotalAccounts)
             {
