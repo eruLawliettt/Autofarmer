@@ -10,19 +10,15 @@ namespace Autofarmer.Models
 {
     class Email
     {
+        public string? EmailString { get; set; }
         public string? Address { get; set; }
-        public string? Password { get; set; }
-        public string? Recovery { get; set; }
         public DrawingImage QRCode { get; set; }
 
-        public Email(string address, string password, string recovery, DrawingImage qRCode)
+        public Email(string emailString, string address, DrawingImage qRCode)
         {
+            EmailString = emailString;
             Address = address;
-            Password = password;
-            Recovery = recovery;
             QRCode = qRCode;
         }
-
-        public string? FullEmailString => $"{Address}:{Password}:{Recovery}";
     }
 }

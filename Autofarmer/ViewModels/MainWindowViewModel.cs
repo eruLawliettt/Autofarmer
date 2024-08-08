@@ -116,7 +116,7 @@ namespace Autofarmer.ViewModels
 
         void CopyToClipboard()
         {
-            Clipboard.SetText(CurrentAccount.Email.FullEmailString);
+            Clipboard.SetText(CurrentAccount.Email.EmailString);
         }
 
         void ShowNewEmailWindow()

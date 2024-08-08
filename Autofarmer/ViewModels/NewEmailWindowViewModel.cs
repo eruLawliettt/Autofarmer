@@ -29,12 +29,11 @@ namespace Autofarmer.ViewModels
         private Email GetEmailModelFromString(string emailString)
         {
             string email = emailString[..emailString.IndexOf(':')];
-            string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
-            string recovery = emailString[(emailString.LastIndexOf(':') + 1)..];
 
-            return new Email(email, password, recovery, GenerateQR(email + '1'));
+            return new Email(emailString, email, GenerateQR(email + '1'));
+
         }
-        
+
         DrawingImage GenerateQR(string value)
         {
             using var qrGenerator = new QRCodeGenerator();

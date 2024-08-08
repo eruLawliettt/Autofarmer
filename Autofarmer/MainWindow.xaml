@@ -27,11 +27,11 @@
                 StartPoint="0, 2"
                 EndPoint="1, 1">
                 <GradientStop 
-                    Color="Purple" 
+                    Color="#0F2027" 
                     Offset="0.4"/>
                 <GradientStop 
-                    Color="Orange" 
-                    Offset="3"/>
+                    Color="#2C5364" 
+                    Offset="1.1"/>
             </LinearGradientBrush>
         </Border.Background>
 
@@ -98,11 +98,6 @@
                     Grid.Row="1"
                     Margin="0 0 0 10">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width=".5*"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -115,8 +110,8 @@
                         Padding="10 0 0 0"
                         VerticalAlignment="Center" 
                         Text="email:"/>
-                    
-                    <TextBox
+
+                        <TextBox
                         Grid.Row="1"
                         Grid.Column="0"                
                         Foreground="White"
@@ -125,41 +120,9 @@
                         Padding="10 0 0 0"
                         VerticalContentAlignment="Center"
                         IsReadOnly="True"
-                        Text="{Binding CurrentAccount.Email.Address, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    
-                    <TextBlock
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        VerticalAlignment="Center" 
-                        Text="password:"/>
+                        Text="{Binding CurrentAccount.Email.EmailString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <TextBox
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Foreground="White"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        VerticalContentAlignment="Center"
-                        IsReadOnly="True"
-                        Text="{Binding CurrentAccount.Email.Password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    
-                    <TextBlock
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        VerticalAlignment="Center" 
-                        Text="recovery:"/>
-
-                    <TextBox
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Foreground="White"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        VerticalContentAlignment="Center"
-                        IsReadOnly="True"
-                        Text="{Binding CurrentAccount.Email.Recovery, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                </Grid>
+                    </Grid>
 
                 <Grid
                     Grid.Row="2">
