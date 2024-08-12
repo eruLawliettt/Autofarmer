@@ -54,7 +54,7 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("Auckland", -36.89678263, 174.73257065, -36.84610922, 174.78715897),
                 new CityGeolocation("Christchurch", -43.55153408, 172.61100769, -43.51519470, 172.66250610),
                 new CityGeolocation("Wellington", -41.29954051, 174.76552963, -41.27954804, 174.78157997),
-                new CityGeolocation("Hamilton", -37.80435891, 175.25356293, -37.77017197, 175.30094147),
+                //new CityGeolocation("Hamilton", -37.80435891, 175.25356293, -37.77017197, 175.30094147),
                 new CityGeolocation("Tauranga", -37.71343018, 176.15564346, -37.67682361, 176.16997719),
                 new CityGeolocation("Lower Hutt", -41.23276753, 174.89135742, -41.20526432, 174.92036819),
                 new CityGeolocation("Dunedin", -45.90864435, 170.48343658, -45.86634552, 170.51210403),

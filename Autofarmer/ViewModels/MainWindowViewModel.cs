@@ -4,6 +4,9 @@ using Autofarmer.Services.Account;
 using Autofarmer.Services.Email;
 using Autofarmer.Services.FilesHandling;
 using Autofarmer.Views;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
@@ -21,6 +24,8 @@ namespace Autofarmer.ViewModels
         private readonly FileService _fileService = new();
         private readonly EmailService _emailService = new();
         private readonly AccountService _accountService = new();
+
+        private ChromeDriver _chromeDriver;
 
         private const int TotalAccounts = 40;
 
@@ -53,7 +58,6 @@ namespace Autofarmer.ViewModels
             Dictionary<string, string> jacs = _fileService.GetDictionaryFromFile(_JACsFilePath);
 
             List<Email> emailModels = _emailService.GetEmailModels(_fileService.ReadFileByLines(_emailsFilePath));
-
            
             foreach (var accountString in accountStrings)
             {
@@ -88,6 +92,60 @@ namespace Autofarmer.ViewModels
             return list[index];
         }
 
+        void WebDriverDispose()
+        {
+            if (_chromeDriver != null)
+                _chromeDriver.Quit();
+        }
+
+        void LogInToEmail()
+        {
+            WebDriverDispose();
+            Clipboard.SetText(CurrentAccount.Email.EmailString);
+            try
+            {
+                string emailString = CurrentAccount.Email.EmailString!;
+
+                string login = CurrentAccount.Email.Address!;
+                string password = emailString[emailString.IndexOf(':')..].Remove(0, 1);
+                password = password[..password.IndexOf(":")];
+
+                ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+                service.HideCommandPromptWindow = true;
+
+                ChromeOptions options = new ChromeOptions();
+                options.AddArgument("--disable-blink-features=AutomationControlled");
+
+                _chromeDriver = new(service, options);
+
+                string url = "https://gmail.com";
+
+                _chromeDriver.Navigate().GoToUrl(url);
+
+                var wait = new WebDriverWait(_chromeDriver, TimeSpan.FromSeconds(7));
+
+                wait.Until(d => _chromeDriver.FindElement(By.Id("identifierId")));
+                IWebElement id = _chromeDriver.FindElement(By.Id("identifierId"));
+                id.SendKeys(login);
+
+                IWebElement btn = _chromeDriver.FindElement(By.Id("identifierNext"));
+                btn.Click();
+
+                wait.Until(d => d.FindElement(By.Name("Passwd")));
+                IWebElement passBox = _chromeDriver.FindElement(By.Name("Passwd"));
+                passBox.SendKeys(password);
+
+                IWebElement passBtn = _chromeDriver.FindElement(By.Id("passwordNext"));
+                passBtn.Click();    
+            }
+
+            catch (Exception ex) 
+            {
+                
+            }
+            
+        }
+        
         void NextAccount()
         {
             int index = Accounts.IndexOf(CurrentAccount) + 1;
@@ -100,7 +158,6 @@ namespace Autofarmer.ViewModels
             else
                 MessageBox.Show("Аккаунт последний");
         }
-
         void PreviousAccount()
         {
             int index = Accounts.IndexOf(CurrentAccount) - 1;
@@ -111,7 +168,6 @@ namespace Autofarmer.ViewModels
             }
             else
                 MessageBox.Show("Предыдущего аккаунта нет");
-
         }
 
         void CopyToClipboard()
@@ -121,6 +177,7 @@ namespace Autofarmer.ViewModels
 
         void ShowNewEmailWindow()
         {
+            WebDriverDispose();
             NewEmailWindow newEmailWindow = new NewEmailWindow();
             newEmailWindow.DataContext = new NewEmailWindowViewModel(this, newEmailWindow);
             newEmailWindow.ShowDialog();
@@ -137,6 +194,7 @@ namespace Autofarmer.ViewModels
             
         }
 
+        public ICommand LogInToEmailCommand => new RelayCommand(x => LogInToEmail());
         public ICommand CopyToClipboardCommand => new RelayCommand(x => CopyToClipboard());
         public ICommand ShowNewEmailWindowCommand => new RelayCommand(x => ShowNewEmailWindow());
         public ICommand NextAccountCommand => new RelayCommand(x => NextAccount());
