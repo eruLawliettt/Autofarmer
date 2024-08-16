@@ -178,6 +178,7 @@
                                 Background="Black"
                                 Opacity=".7"
                                 TextAlignment="Center"
+
                                 VerticalAlignment="Stretch"
                                 HorizontalAlignment="Stretch"
                                 Text="Долгота"/>
