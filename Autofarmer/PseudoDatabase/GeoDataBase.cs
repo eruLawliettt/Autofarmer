@@ -383,6 +383,20 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("Koyang", 37.60253626, 126.77776337, 37.67267961, 126.84436798),
                 new CityGeolocation("Ionine", 37.23039673, 127.18151093, 37.23702534, 127.21730232),
                 new CityGeolocation("Changwon", 35.19036409, 128.63342285, 35.24449754, 128.69899750),
+                //kor things
+                new CityGeolocation("Iksan", 35.94007309, 126.94264412, 35.95529020, 126.96315765),
+                new CityGeolocation("Kunpho", 37.35705928, 126.93191528, 37.38598077, 126.96899414),
+                new CityGeolocation("Kodje", 34.88807830, 128.60647202, 34.89476645, 128.62299442),
+                new CityGeolocation("Gyeongju", 35.83952494, 129.20093536, 35.85935262, 129.22848701),
+                new CityGeolocation("Osan", 37.13582444, 127.06297874, 37.15716996, 127.08323479),
+                new CityGeolocation("Mokpo", 34.78335552, 126.37933731, 34.81549453, 126.40302658),
+                new CityGeolocation("Gangneung", 37.74255311, 128.88113022, 37.77071474, 128.91082764),
+                new CityGeolocation("Icheon", 37.27558953, 127.43441105, 37.28644816, 127.45646954),
+                new CityGeolocation("Chungju", 36.96710658, 127.91399002, 36.99281864, 127.94626236),
+                new CityGeolocation("Yangju", 37.78407080, 127.04280853, 37.78757265, 127.05006123),
+                new CityGeolocation("Anson", 37.00234704, 127.25635529, 37.01694579, 127.27515221),
+
+
 
                 //china none
 

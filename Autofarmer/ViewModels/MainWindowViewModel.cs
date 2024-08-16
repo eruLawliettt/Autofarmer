@@ -122,7 +122,7 @@ namespace Autofarmer.ViewModels
 
                 _chromeDriver.Navigate().GoToUrl(url);
 
-                var wait = new WebDriverWait(_chromeDriver, TimeSpan.FromSeconds(7));
+                var wait = new WebDriverWait(_chromeDriver, TimeSpan.FromSeconds(5));
 
                 wait.Until(d => _chromeDriver.FindElement(By.Id("identifierId")));
                 IWebElement id = _chromeDriver.FindElement(By.Id("identifierId"));
