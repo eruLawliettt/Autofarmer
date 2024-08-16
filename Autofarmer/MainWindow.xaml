@@ -25,16 +25,11 @@
 
     <Border>
         <Border.Background>
-            <LinearGradientBrush
-                StartPoint="0, 2"
-                EndPoint="1, 1">
-                <GradientStop 
-                    Color="#0F2027" 
-                    Offset="0.4"/>
-                <GradientStop 
-                    Color="#2C5364" 
-                    Offset="1.1"/>
-            </LinearGradientBrush>
+            <ImageBrush
+                ImageSource="Images/KBackground.jpg"
+                Opacity=".9">
+                
+            </ImageBrush>
         </Border.Background>
 
         <Grid
@@ -173,24 +168,31 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock
-                            Grid.Column="1"
-                            Grid.Row="0"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Text="Долгота"/>
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Text="Долгота"
+                                TextAlignment="Center"
+                                Background="Black"
+                                Opacity=".7"/>
 
                             <TextBlock
-                            Grid.Column="0"
-                            Grid.Row="0"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Text="Широта"/>
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Text="Широта"
+                                TextAlignment="Center"
+                                Background="Black"
+                                Opacity=".7"/>
 
                             <TextBox 
                             Grid.Row="1"
                             Grid.Column="1"
                             Foreground="White"
-                            Background="Transparent"
+                            Background="Black"
+                            Opacity=".7"
                             BorderThickness="0"
                             VerticalContentAlignment="Top"
                             HorizontalContentAlignment="Center"
@@ -203,7 +205,8 @@
                             Grid.Row="1"
                             Grid.Column="0"
                             Foreground="White"
-                            Background="Transparent"
+                            Background="Black"
+                            Opacity=".7" 
                             BorderThickness="0"
                             VerticalContentAlignment="Top"
                             HorizontalContentAlignment="Center"
@@ -265,19 +268,22 @@
                 <TextBox
                     Grid.Row="3"
                     Foreground="White"
-                    Background="Transparent"
+                    Background="Black"
+                    Opacity=".7"
                     VerticalContentAlignment="Top"  
                     BorderThickness="0"
                     TextWrapping="WrapWithOverflow"  
                     Margin="0 20 0 0"
                     Padding="10"
+                    
                     IsReadOnly="True"
                     Text="{Binding CurrentAccount.FullDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox
                     Grid.Row="4"
                     Foreground="White"
-                    Background="Transparent"
+                    Background="Black"
+                    Opacity=".7"
                     BorderThickness="0"
                     VerticalContentAlignment="Center"
                     TextWrapping="WrapWithOverflow"                    
@@ -288,7 +294,8 @@
                     <TextBox
                     Grid.Row="5"
                     Foreground="White"
-                    Background="Transparent"
+                    Background="Black"
+                    Opacity=".7"
                     BorderThickness="0"
                     VerticalContentAlignment="Center"
                     TextWrapping="WrapWithOverflow"                    

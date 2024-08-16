@@ -12,6 +12,7 @@
     <None Remove="Images\borderless_icon.ico" />
     <None Remove="Images\borderless_icon.png" />
     <None Remove="Images\icon.png" />
+    <None Remove="Images\KBackground.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <Resource Include="Images\borderless_icon.ico" />
+    <Resource Include="Images\KBackground.jpg" />
   </ItemGroup>
 
   <ItemGroup>
