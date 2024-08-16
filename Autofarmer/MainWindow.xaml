@@ -25,16 +25,12 @@
 
     <Border>
         <Border.Background>
-            <LinearGradientBrush
-                StartPoint="0, 2"
-                EndPoint="1, 1">
-                <GradientStop 
-                    Color="#0F2027" 
-                    Offset="0.4"/>
-                <GradientStop 
-                    Color="#2C5364" 
-                    Offset="1.1"/>
-            </LinearGradientBrush>
+            <ImageBrush
+                ImageSource="Images/farm.jpg"
+                Stretch="UniformToFill"
+                Opacity="1">
+                
+            </ImageBrush>
         </Border.Background>
 
         <Grid
@@ -118,9 +114,8 @@
                         <Border
                             Grid.Row="1"
                             Background="Black"
-                            Opacity=".6"
-                            CornerRadius="20"
-                            Margin="0 10 0 10">
+                            Opacity=".7"
+                            Margin="10">
 
                         
                             <TextBox         
@@ -149,12 +144,16 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
 
+                   
+
                         <Image    
                         Margin="10"
                         Grid.Column="0"
                         Source="{Binding CurrentAccount.Email.QRCode}"
                         RenderOptions.EdgeMode="Aliased">
                         </Image>
+
+                        
 
                         <Grid
                         Grid.Column="1"
@@ -173,56 +172,66 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock
-                            Grid.Column="1"
-                            Grid.Row="0"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Text="Долгота"/>
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Margin="0 10 0 0"
+                                Background="Black"
+                                Opacity=".7"
+                                TextAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Text="Долгота"/>
 
                             <TextBlock
-                            Grid.Column="0"
-                            Grid.Row="0"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Text="Широта"/>
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Margin="0 10 0 0"
+                                Background="Black"
+                                Opacity=".7"
+                                TextAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Text="Широта"/>
 
                             <TextBox 
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Foreground="White"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            VerticalContentAlignment="Top"
-                            HorizontalContentAlignment="Center"
-                            TextWrapping="WrapWithOverflow"                    
-                            Padding="10"
-                            IsReadOnly="True"
-                            Text="{Binding CurrentAccount.GeoLocation.Longitude}"/>
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Foreground="White"
+                                Background="Black"
+                                Opacity=".7"
+                                BorderThickness="0"
+                                VerticalContentAlignment="Top"
+                                HorizontalContentAlignment="Center"
+                                TextWrapping="WrapWithOverflow"                    
+                                Padding="10"
+                                IsReadOnly="True"
+                                Text="{Binding CurrentAccount.GeoLocation.Longitude}"/>
 
                             <TextBox 
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Foreground="White"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            VerticalContentAlignment="Top"
-                            HorizontalContentAlignment="Center"
-                            TextWrapping="WrapWithOverflow"                    
-                            Padding="10"
-                            IsReadOnly="True"
-                            Text="{Binding CurrentAccount.GeoLocation.Latitude}"/>
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Foreground="White"
+                                Background="Black"
+                                Opacity=".7"
+                                BorderThickness="0"
+                                VerticalContentAlignment="Top"
+                                HorizontalContentAlignment="Center"
+                                TextWrapping="WrapWithOverflow"                    
+                                Padding="10"
+                                IsReadOnly="True"
+                                Text="{Binding CurrentAccount.GeoLocation.Latitude}"/>
 
                             <Button
                                 Grid.Row="2"
                                 Grid.Column="2"
+                                HorizontalAlignment="Right"
                                 Style="{StaticResource BetterButtonStyle}"
                                 Foreground="White"
-                                Background="Black"
+                                Background="Transparent"
                                 Opacity=".6"
                                 BorderThickness="0"
-                                Margin="0"
+                                Margin="10 5 10 10"
                                 Width="200"
-                                Height="50"
                                 Content="Change email"
                                 Command="{Binding ShowNewEmailWindowCommand}"/>
 
@@ -230,13 +239,14 @@
                             <Button
                                 Grid.Row="1"
                                 Grid.Column="2"
+                                HorizontalAlignment="Right"
                                 Style="{StaticResource BetterButtonStyle}"
                                 Foreground="White"
-                                Background="Black"
+                                Background="Transparent"
                                 Opacity=".6"
                                 BorderThickness="0"
                                 Width="200"
-                                Height="50"
+                                Margin="10 5 10 5"
                                 Content="Copy full email"
                                 Command="{Binding CopyToClipboardCommand}"/>
                             
@@ -245,15 +255,14 @@
                             <Button
                                 Grid.Column="2"
                                 Grid.Row="0"
+                                HorizontalAlignment="Right"
                                 Style="{StaticResource BetterButtonStyle}"
                                 Foreground="White"
-                                Background="Black"
-                                Opacity=".6"
-                                
+                                Background="Transparent"
+                                Opacity=".6"       
                                 BorderThickness="0"
-                                Margin="0"
+                                Margin="10 10 10 5"
                                 Width="200"
-                                Height="50"
                                 Content="LogIn"
                                 Command="{Binding LogInToEmailCommand}"/>
 
@@ -265,11 +274,12 @@
                 <TextBox
                     Grid.Row="3"
                     Foreground="White"
-                    Background="Transparent"
+                    Background="Black"
+                    Opacity=".7"
                     VerticalContentAlignment="Top"  
                     BorderThickness="0"
                     TextWrapping="WrapWithOverflow"  
-                    Margin="0 20 0 0"
+                    Margin="10 10 10 0"
                     Padding="10"
                     IsReadOnly="True"
                     Text="{Binding CurrentAccount.FullDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -277,10 +287,12 @@
                 <TextBox
                     Grid.Row="4"
                     Foreground="White"
-                    Background="Transparent"
+                    Background="Black"
+                    Opacity=".7"
                     BorderThickness="0"
                     VerticalContentAlignment="Center"
-                    TextWrapping="WrapWithOverflow"                    
+                    TextWrapping="WrapWithOverflow"   
+                    Margin="10 0 10 0"
                     Padding="10"
                     IsReadOnly="True"
                     Text="{Binding CurrentAccount.Job, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -288,10 +300,12 @@
                     <TextBox
                     Grid.Row="5"
                     Foreground="White"
-                    Background="Transparent"
+                    Background="Black"
+                    Opacity=".7"
                     BorderThickness="0"
                     VerticalContentAlignment="Center"
-                    TextWrapping="WrapWithOverflow"                    
+                    TextWrapping="WrapWithOverflow"    
+                    Margin="10 0 10 0"
                     Padding="10"
                     IsReadOnly="True"
                     Text="{Binding CurrentAccount.Company, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -312,20 +326,22 @@
             <Button 
                 Foreground="White"
                 Background="Transparent"
+                Opacity=".7"
                 FontSize="32"
                 Style="{DynamicResource BetterButtonStyle}"
                 Grid.Column="0"
-                Margin="10 20 100 20"
+                Margin="25 20 100 20"
                 Content="Previous"
                 Command="{Binding PreviousAccountCommand}">
             </Button>
             <Button
                 Foreground="White"
                 Background="Transparent"
+                Opacity=".7"
                 FontSize="32"
                 Style="{DynamicResource BetterButtonStyle}" 
                 Grid.Column="2"
-                Margin="100 20 10 20"
+                Margin="100 20 25 20"
                 Content="Next"
                 Command="{Binding NextAccountCommand}">
             </Button>

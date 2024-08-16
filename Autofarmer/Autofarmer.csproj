@@ -9,9 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\bettertinder.png" />
     <None Remove="Images\borderless_icon.ico" />
     <None Remove="Images\borderless_icon.png" />
+    <None Remove="Images\farm.jpg" />
     <None Remove="Images\icon.png" />
+    <None Remove="Images\td.jpg" />
+    <None Remove="Images\tinder.png" />
+    <None Remove="Images\unnamed.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +27,8 @@
 
   <ItemGroup>
     <Resource Include="Images\borderless_icon.ico" />
+    <Resource Include="Images\farm.jpg" />
+    <Resource Include="Images\unnamed.jpg" />
   </ItemGroup>
 
   <ItemGroup>

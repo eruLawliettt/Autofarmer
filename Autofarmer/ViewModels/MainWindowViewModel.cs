@@ -158,10 +158,8 @@ namespace Autofarmer.ViewModels
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
             }
-
-            else
-                MessageBox.Show("Аккаунт последний");
         }
+
         void PreviousAccount()
         {
             int index = Accounts.IndexOf(CurrentAccount) - 1;
@@ -170,8 +168,6 @@ namespace Autofarmer.ViewModels
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
             }
-            else
-                MessageBox.Show("Предыдущего аккаунта нет");
         }
 
         void CopyToClipboard()

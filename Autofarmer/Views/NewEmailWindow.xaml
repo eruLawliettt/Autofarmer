@@ -11,20 +11,10 @@
         Width="500"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-    <Border>
+    <Border
+        Background="Black">
         
-        <Border.Background>
-            <LinearGradientBrush
-        StartPoint="0, 2"
-        EndPoint="1, 1">
-                <GradientStop 
-            Color="#0F2027" 
-            Offset="0.4"/>
-                <GradientStop 
-            Color="#2C5364" 
-            Offset="1.1"/>
-            </LinearGradientBrush>
-        </Border.Background>
+        
 
         <Grid>
 
