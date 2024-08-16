@@ -35,6 +35,7 @@ namespace Autofarmer.Services.Account
 
         public string GetCityFromAccountIdString(string accountId)
         {
+            accountId = accountId.Trim();
             var city = accountId[accountId.IndexOf(' ')..];
             city = city[..city.LastIndexOf(' ')].Trim();
 

@@ -63,6 +63,7 @@ namespace Autofarmer.ViewModels
             {
                 string jac = _accountService.GetRandomJaCString(jacs);
                 string city = _accountService.GetCityFromAccountIdString(accountString);
+                CityGeolocation cityGeolocation = GeoDataBase.CityGeolocations.FirstOrDefault(c => c.City.Equals(city))!;
                 GeoPoint geoLocation = _accountService.GetGeolocation(city);
                 string description = GetRandomValueFromList(descriptions);
                 string job = _accountService.GetJobFromJacString(jac);
@@ -77,6 +78,9 @@ namespace Autofarmer.ViewModels
                     job,
                     company, 
                     emailModel);
+
+                if (cityGeolocation != null) 
+                    model.CurrentCityGeolocation = cityGeolocation;
 
                 Accounts.Add(model);
             }
@@ -154,10 +158,8 @@ namespace Autofarmer.ViewModels
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
             }
-
-            else
-                MessageBox.Show("Аккаунт последний");
         }
+
         void PreviousAccount()
         {
             int index = Accounts.IndexOf(CurrentAccount) - 1;
@@ -166,8 +168,6 @@ namespace Autofarmer.ViewModels
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
             }
-            else
-                MessageBox.Show("Предыдущего аккаунта нет");
         }
 
         void CopyToClipboard()

@@ -10,6 +10,7 @@ namespace Autofarmer.Models
     {
         public string? Id { get; set; }
         public string? City { get; set; }
+        public CityGeolocation? CurrentCityGeolocation { get; set; }
         public GeoPoint GeoLocation { get; set; }
         public string? Description { get; set; }
         public string? Job { get; set; }
