@@ -4,6 +4,9 @@ using Autofarmer.Services.Account;
 using Autofarmer.Services.Email;
 using Autofarmer.Services.FilesHandling;
 using Autofarmer.Views;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
@@ -22,13 +25,13 @@ namespace Autofarmer.ViewModels
         private readonly EmailService _emailService = new();
         private readonly AccountService _accountService = new();
 
+        private ChromeDriver _chromeDriver;
+
         private const int TotalAccounts = 40;
 
         private List<Account> _accounts = [];
         private Account _currentAccount;
         private int _currentAccountNumber;
-        private GeoPoint _currentGeo;
-
 
         public List<Account> Accounts 
         { 
@@ -47,11 +50,6 @@ namespace Autofarmer.ViewModels
             get { return _currentAccountNumber; }
             set => Set(ref _currentAccountNumber, value, nameof(CurrentAccountNumber));
         }
-        public GeoPoint CurrentGeo
-        {
-            get { return _currentGeo; }
-            set => Set(ref _currentGeo, value, nameof(CurrentGeo));
-        }
 
         public MainWindowViewModel()
         {
@@ -60,19 +58,24 @@ namespace Autofarmer.ViewModels
             Dictionary<string, string> jacs = _fileService.GetDictionaryFromFile(_JACsFilePath);
 
             List<Email> emailModels = _emailService.GetEmailModels(_fileService.ReadFileByLines(_emailsFilePath));
-
            
             foreach (var accountString in accountStrings)
             {
                 string jac = _accountService.GetRandomJaCString(jacs);
+                string city = _accountService.GetCityFromAccountIdString(accountString);
+                GeoPoint geoLocation = _accountService.GetGeolocation(city);
+                string description = GetRandomValueFromList(descriptions);
+                string job = _accountService.GetJobFromJacString(jac);
+                string company = _accountService.GetCompanyFromJacString(jac);
                 Email emailModel = _emailService.GetEmailModel(emailModels);
 
                 Account model = new(
                     accountString, 
-                    _accountService.GetCityFromAccountIdString(accountString),
-                    GetRandomValueFromList(descriptions), 
-                    _accountService.GetJobFromJacString(jac), 
-                    _accountService.GetCompanyFromJacString(jac), 
+                    city,
+                    geoLocation,
+                    description,
+                    job,
+                    company, 
                     emailModel);
 
                 Accounts.Add(model);
@@ -80,19 +83,6 @@ namespace Autofarmer.ViewModels
 
             CurrentAccount = Accounts[0];
             CurrentAccountNumber = 1;
-            SetGeo();
-        }
-
-
-        void SetGeo()
-        {
-            try
-            {
-                CurrentGeo = null;
-                var location = GeoDataBase.CityGeolocations.FirstOrDefault(x => x.City == CurrentAccount.City);
-                CurrentGeo = _accountService.GetGeolocation(location);
-            }
-            catch { }
         }
 
         public string GetRandomValueFromList(List<string> list)
@@ -102,6 +92,60 @@ namespace Autofarmer.ViewModels
             return list[index];
         }
 
+        void WebDriverDispose()
+        {
+            if (_chromeDriver != null)
+                _chromeDriver.Quit();
+        }
+
+        void LogInToEmail()
+        {
+            WebDriverDispose();
+            Clipboard.SetText(CurrentAccount.Email.EmailString);
+            try
+            {
+                string emailString = CurrentAccount.Email.EmailString!;
+
+                string login = CurrentAccount.Email.Address!;
+                string password = emailString[emailString.IndexOf(':')..].Remove(0, 1);
+                password = password[..password.IndexOf(":")];
+
+                ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+                service.HideCommandPromptWindow = true;
+
+                ChromeOptions options = new ChromeOptions();
+                options.AddArgument("--disable-blink-features=AutomationControlled");
+
+                _chromeDriver = new(service, options);
+
+                string url = "https://gmail.com";
+
+                _chromeDriver.Navigate().GoToUrl(url);
+
+                var wait = new WebDriverWait(_chromeDriver, TimeSpan.FromSeconds(5));
+
+                wait.Until(d => _chromeDriver.FindElement(By.Id("identifierId")));
+                IWebElement id = _chromeDriver.FindElement(By.Id("identifierId"));
+                id.SendKeys(login);
+
+                IWebElement btn = _chromeDriver.FindElement(By.Id("identifierNext"));
+                btn.Click();
+
+                wait.Until(d => d.FindElement(By.Name("Passwd")));
+                IWebElement passBox = _chromeDriver.FindElement(By.Name("Passwd"));
+                passBox.SendKeys(password);
+
+                IWebElement passBtn = _chromeDriver.FindElement(By.Id("passwordNext"));
+                passBtn.Click();    
+            }
+
+            catch (Exception ex) 
+            {
+                
+            }
+            
+        }
+        
         void NextAccount()
         {
             int index = Accounts.IndexOf(CurrentAccount) + 1;
@@ -109,13 +153,11 @@ namespace Autofarmer.ViewModels
             {
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
-                SetGeo();
             }
 
             else
                 MessageBox.Show("Аккаунт последний");
         }
-
         void PreviousAccount()
         {
             int index = Accounts.IndexOf(CurrentAccount) - 1;
@@ -123,22 +165,21 @@ namespace Autofarmer.ViewModels
             {
                 CurrentAccount = Accounts[index];
                 CurrentAccountNumber = index + 1;
-                SetGeo();
             }
             else
                 MessageBox.Show("Предыдущего аккаунта нет");
-
         }
 
         void CopyToClipboard()
         {
-            Clipboard.SetText(CurrentAccount.Email.FullEmailString);
+            Clipboard.SetText(CurrentAccount.Email.EmailString);
         }
 
         void ShowNewEmailWindow()
         {
+            WebDriverDispose();
             NewEmailWindow newEmailWindow = new NewEmailWindow();
-            newEmailWindow.DataContext = new NewEmailWindowViewModel(this);
+            newEmailWindow.DataContext = new NewEmailWindowViewModel(this, newEmailWindow);
             newEmailWindow.ShowDialog();
             if (CurrentAccountNumber == TotalAccounts)
             {
@@ -153,6 +194,7 @@ namespace Autofarmer.ViewModels
             
         }
 
+        public ICommand LogInToEmailCommand => new RelayCommand(x => LogInToEmail());
         public ICommand CopyToClipboardCommand => new RelayCommand(x => CopyToClipboard());
         public ICommand ShowNewEmailWindowCommand => new RelayCommand(x => ShowNewEmailWindow());
         public ICommand NextAccountCommand => new RelayCommand(x => NextAccount());

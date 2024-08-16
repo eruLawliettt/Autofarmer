@@ -9,28 +9,31 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows;
+using Autofarmer.Views;
 
 namespace Autofarmer.ViewModels
 {
     class NewEmailWindowViewModel : ViewModelBase
     {
         public MainWindowViewModel MainWindowViewModel { get; set; }
+        public NewEmailWindow Window { get; set; }
         public string? EmailString { get; set; }
 
-        public NewEmailWindowViewModel(MainWindowViewModel vmSender)
+        public NewEmailWindowViewModel(MainWindowViewModel vmSender, NewEmailWindow window)
         {
             MainWindowViewModel = vmSender;
+            Window = window;
+            
         }
 
         private Email GetEmailModelFromString(string emailString)
         {
             string email = emailString[..emailString.IndexOf(':')];
-            string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
-            string recovery = emailString[(emailString.LastIndexOf(':') + 1)..];
 
-            return new Email(email, password, recovery, GenerateQR(email + '1'));
+            return new Email(emailString, email, GenerateQR(email + '1'));
+
         }
-        
+
         DrawingImage GenerateQR(string value)
         {
             using var qrGenerator = new QRCodeGenerator();
@@ -51,7 +54,7 @@ namespace Autofarmer.ViewModels
                 else
                 {
                     MainWindowViewModel.CurrentAccount.Email = GetEmailModelFromString(EmailString);
-                    MessageBox.Show($"Старый Email заменён на {EmailString}", "Успешно!");
+                    Window.Close();
                 }
             }
             catch (Exception ex) 

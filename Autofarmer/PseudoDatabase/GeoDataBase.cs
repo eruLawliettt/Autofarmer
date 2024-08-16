@@ -17,33 +17,44 @@ namespace Autofarmer.PseudoDatabase
         {
             //649
             CityGeolocations = [
-                //usa partial
-                 new CityGeolocation("New York", 40.70771001, -74.08630371, 40.81276986, -73.91601563),
-                 new CityGeolocation("Los Angeles", 33.96101678, -118.32962036, 34.09474770, -118.17100525),
-                 new CityGeolocation("Chicago", 41.85294071, -87.65819550, 41.88668781, -87.61802673),
-                 new CityGeolocation("Houston", 29.71012130, -95.44441223, 29.80609284, -95.28030396),
-                 new CityGeolocation("Philadelphia", 39.92816810, -75.20244598, 39.98580147, -75.13172150),
-                 new CityGeolocation("Phoenix", 33.43889050, -112.14775085, 33.50704925, -111.99050903),
-                 new CityGeolocation("San Antonio", 29.39713197, -98.53019714, 29.44886586, -98.46084595),
-                 new CityGeolocation("San Diego", 32.70728895, -117.17004776, 32.72339290, -117.15571404),
-                 new CityGeolocation("Dallas", 32.74685758, -96.82388306, 32.81382424, -96.75212860),
-                 new CityGeolocation("San Jose", 37.25820564, -121.96678162, 37.42525247, -121.84249878),
-                 new CityGeolocation("Austin", 30.23237435, -97.78072357, 30.30264994, -97.67223358),
-                 new CityGeolocation("Jacksonville", 30.32428587, -81.70618057, 30.36235942, -81.62755966),
-                 new CityGeolocation("San Francisco", 37.73447587, -122.43713379, 37.80666460, -122.39696503),
-                 new CityGeolocation("Indianapolis", 39.73729032, -86.16920471, 39.81038217, -86.10157013),
-                 new CityGeolocation("Fort Worth", 32.71046664, -97.35157013, 32.75804625, -97.31964111),
-                 new CityGeolocation("Columbus", 39.94975341, -83.03844452, 40.00920937, -82.93853760),
-                 new CityGeolocation("Detroit", 42.31844717, -83.15345764, 42.44423464, -83.01750183),
-                 new CityGeolocation("El Paso", 31.75955334, -106.50060654, 31.78436280, -106.46541595),
-                 new CityGeolocation("Seattle", 47.58104186, -122.33774185, 47.62502494, -122.31044769),
-                 new CityGeolocation("Denver", 39.69767751, -105.02758026, 39.77767195, -104.91462708),
+               //usa partial
+                new CityGeolocation("New York", 40.70771001, -74.08630371, 40.81276986, -73.91601563),
+                new CityGeolocation("Los Angeles", 33.96101678, -118.32962036, 34.09474770, -118.17100525),
+                new CityGeolocation("Chicago", 41.85294071, -87.65819550, 41.88668781, -87.61802673),
+                new CityGeolocation("Houston", 29.71012130, -95.44441223, 29.80609284, -95.28030396),
+                new CityGeolocation("Philadelphia", 39.92816810, -75.20244598, 39.98580147, -75.13172150),
+                new CityGeolocation("Phoenix", 33.43889050, -112.14775085, 33.50704925, -111.99050903),
+                new CityGeolocation("San Antonio", 29.39713197, -98.53019714, 29.44886586, -98.46084595),
+                new CityGeolocation("San Diego", 32.70728895, -117.17004776, 32.72339290, -117.15571404),
+                new CityGeolocation("Dallas", 32.74685758, -96.82388306, 32.81382424, -96.75212860),
+                new CityGeolocation("San Jose", 37.25820564, -121.96678162, 37.42525247, -121.84249878),
+                new CityGeolocation("Austin", 30.23237435, -97.78072357, 30.30264994, -97.67223358),
+                new CityGeolocation("Jacksonville", 30.32428587, -81.70618057, 30.36235942, -81.62755966),
+                new CityGeolocation("San Francisco", 37.73447587, -122.43713379, 37.80666460, -122.39696503),
+                new CityGeolocation("Indianapolis", 39.73729032, -86.16920471, 39.81038217, -86.10157013),
+                new CityGeolocation("Fort Worth", 32.71046664, -97.35157013, 32.75804625, -97.31964111),
+                new CityGeolocation("Columbus", 39.94975341, -83.03844452, 40.00920937, -82.93853760),
+                new CityGeolocation("Detroit", 42.31844717, -83.15345764, 42.44423464, -83.01750183),
+                new CityGeolocation("El Paso", 31.75955334, -106.50060654, 31.78436280, -106.46541595),
+                new CityGeolocation("Seattle", 47.58104186, -122.33774185, 47.62502494, -122.31044769),
+                new CityGeolocation("Denver", 39.69767751, -105.02758026, 39.77767195, -104.91462708),
+                new CityGeolocation("Memphis", 35.10713022, -90.05475998, 35.14882798, -90.01132965),
+                new CityGeolocation("Nashville", 36.14827156, -86.79748535, 36.16864538, -86.77207947),
+                new CityGeolocation("Baltimore", 39.28475543, -76.64714813, 39.31384734, -76.57230377),
+                new CityGeolocation("Boston", 42.34090957, -71.07158661, 42.36558359, -71.04987144),
+                new CityGeolocation("Oklahoma City", 35.46304687, -97.54795074, 35.49296202, -97.50143051),
+                new CityGeolocation("Portland", 45.51236185, -122.69668579, 45.53088387, -122.64553070),
+                new CityGeolocation("Washington, D.C.", 38.89156727, -77.05312729, 38.91948630, -77.01622009),
+                new CityGeolocation("Washington", 38.89156727, -77.05312729, 38.91948630, -77.01622009),
+                new CityGeolocation("Louisville", 38.23696664, -85.77730179, 38.25637996, -85.73455811),
+                new CityGeolocation("Las Vegas", 36.09627357, -115.23902893, 36.22433449, -115.06530762),
+                new CityGeolocation("Milwaukee", 43.03363903, -87.96804428, 43.07064341, -87.89749146),
 
                 //new zealand partial
                 new CityGeolocation("Auckland", -36.89678263, 174.73257065, -36.84610922, 174.78715897),
                 new CityGeolocation("Christchurch", -43.55153408, 172.61100769, -43.51519470, 172.66250610),
                 new CityGeolocation("Wellington", -41.29954051, 174.76552963, -41.27954804, 174.78157997),
-                new CityGeolocation("Hamilton", -37.80435891, 175.25356293, -37.77017197, 175.30094147),
+                //new CityGeolocation("Hamilton", -37.80435891, 175.25356293, -37.77017197, 175.30094147),
                 new CityGeolocation("Tauranga", -37.71343018, 176.15564346, -37.67682361, 176.16997719),
                 new CityGeolocation("Lower Hutt", -41.23276753, 174.89135742, -41.20526432, 174.92036819),
                 new CityGeolocation("Dunedin", -45.90864435, 170.48343658, -45.86634552, 170.51210403),
@@ -132,7 +143,27 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("Oberhausen", 51.45764373, 6.82456970, 51.48031383, 6.88602448),
                 new CityGeolocation("Potsdam", 52.39582023, 13.03956985, 52.41697431, 13.06652069),
 
-                //australia none
+                //australia COMPLETE
+                new CityGeolocation("Adelaide", -34.96924965, 138.52043152, -34.85550981, 138.66531372),
+                new CityGeolocation("Sydney", -33.91743764, 151.15779877, -33.87326611, 151.23847961),
+                new CityGeolocation("Brisbane", -27.48847661, 152.99697876, -27.44095455, 153.04744720),
+                new CityGeolocation("Perth", -31.96293993, 115.80757141, -31.88980161, 115.88619232),   
+                new CityGeolocation("Gold Coast", -28.01652922, 153.38802338, -27.97530116, 153.42956543),
+                new CityGeolocation("Newcastl", -32.93608125, 151.72050476, -32.92585158, 151.79140091),
+                new CityGeolocation("Canberra", -35.34593540, 149.08138275, -35.30251763, 149.13940430),
+                new CityGeolocation("Wollongong", -34.43905313, 150.86717606, -34.41629201, 150.90399742),
+                new CityGeolocation("Hobart", -42.90331917, 147.31052399, -42.87464321, 147.33163834),
+                new CityGeolocation("Geelong", -38.16223093, 144.33683395, -38.14836132, 144.37429905),
+                new CityGeolocation("Townsville", -19.28198019, 146.81141853, -19.25451346, 146.83364868),
+                new CityGeolocation("Cairns", -16.94433496, 145.74274063, -16.91296838, 145.77363968),
+                new CityGeolocation("Darwin", -12.46423457, 130.83437920, -12.45208216, 130.84776878),
+                new CityGeolocation("Toowoomba", -27.57486239, 151.93233490, -27.55424253, 151.97181702),
+                new CityGeolocation("Ballarat", -37.57424269, 143.83712769, -37.55628159, 143.88072968),
+                new CityGeolocation("Bendigo", -36.77409249, 144.26731110, -36.74589958, 144.30679321),
+                new CityGeolocation("Launceston", -41.45192637, 147.13439941, -41.43204502, 147.15199471),
+                new CityGeolocation("Rockhampton", -23.38748267, 150.49900532, -23.37590166, 150.51672935),
+                new CityGeolocation("Bunbury", -33.35920865, 115.62114716, -33.32608194, 115.66337585),
+                new CityGeolocation("Geraldton", -28.78345775, 114.61091995, -28.76698197, 114.62430954),
 
                 //ireland COMPLETE
                 new CityGeolocation("Dublin", 53.30133845, -6.33636475, 53.39888863, -6.19766235),
@@ -202,9 +233,14 @@ namespace Autofarmer.PseudoDatabase
 
                 //italy none
 
-                //finland none 
+                //finland COMPLETE
+                new CityGeolocation("Helsinki", 60.16324795, 24.92317200, 60.17268404, 24.95201111),
+                new CityGeolocation("Espoo", 60.20163720, 24.65310574, 60.20797063, 24.66254711),
+                new CityGeolocation("Tampere", 61.49268245, 23.74394417, 61.50509222, 23.78625870),
+                new CityGeolocation("Oulu", 65.00450442, 25.46416283, 65.01498368, 25.48158646),
+                new CityGeolocation("Turku", 60.44646653, 22.24662781, 60.45751404, 22.27280617),
 
-                //france partial
+                //france COMPLETE
                 new CityGeolocation("Paris", 48.81884597, 2.29202271, 48.89767817, 2.39604950),
                 new CityGeolocation("Marcel", 43.27820513, 5.35892487, 43.31431226, 5.39394379),
                 new CityGeolocation("Lyon", 45.74536554, 4.80136871, 45.77315074, 4.86763000),
@@ -225,6 +261,15 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("Villeurbanne", 45.75458889, 4.86179352, 45.78254907, 4.90264893),
                 new CityGeolocation("St. Denis", 48.92999958, 2.35090256, 48.94448947, 2.37210274),
                 new CityGeolocation("Nîmes", 43.82474367, 4.35195923, 43.84381306, 4.36955452),
+                new CityGeolocation("Aix-en-Provence", 43.52372149, 5.43784618, 43.53258931, 5.45488358),
+                new CityGeolocation("Clermont-Ferrand", 45.76728347, 3.07076454, 45.78637978, 3.09840202),
+                new CityGeolocation("Le Mans", 47.99692926, 0.19097328, 48.01013770, 0.20256042),
+                new CityGeolocation("Brest", 48.38418814, -4.49435234, 48.40003250, -4.47246552),
+                new CityGeolocation("Thor", 43.92278084, 4.98663425, 43.93047715, 5.00131130),
+                new CityGeolocation("Amiens", 49.88296643, 2.27597237, 49.89640370, 2.30996132),
+                new CityGeolocation("Limoges", 45.82694520, 1.24033928, 45.84040064, 1.27621651),
+                new CityGeolocation("Boulogne-Billancourt", 48.82788748, 2.22979546, 48.84218104, 2.25219727),
+                new CityGeolocation("Perpignan", 42.68155205, 2.87532806, 42.70337976, 2.90966034),
 
                 //great britain COMPLETE
                 new CityGeolocation("Birmingham", 52.46437703, -1.93702698, 52.49845869, -1.86012268),
@@ -237,7 +282,10 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("Coventry", 52.40205231, -1.52272224, 52.41304795, -1.49645805),
                 new CityGeolocation("Bradford", 53.77103665, -1.77772522, 53.81028107, -1.72382355),
                 new CityGeolocation("Nottingham", 52.94046604, -1.17708206, 52.97572838, -1.11751556),
+                new CityGeolocation("Newcastle-upon-Tyne", 54.96771161, -1.62056923, 54.98239141, -1.60220146),
+                new CityGeolocation("Brighton & Hove", 50.82149919, -0.15973091, 50.83093296, -0.12951851),
                 new CityGeolocation("Derby", 52.90196523, -1.50203705, 52.92970582, -1.45156860),
+                new CityGeolocation("Kingston-upon-Hull", 53.73866029, -0.36581039, 53.76362984, -0.32426834),
                 new CityGeolocation("Plymouth", 50.36780273, -4.17514801, 50.39582527, -4.11403656),
                 new CityGeolocation("Stoke-on-Trent", 53.01488652, -2.19263077, 53.02619341, -2.16945648),
                 new CityGeolocation("Southampton", 50.89978505, -1.42547607, 50.92316402, -1.38710976),
@@ -335,6 +383,20 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation("Koyang", 37.60253626, 126.77776337, 37.67267961, 126.84436798),
                 new CityGeolocation("Ionine", 37.23039673, 127.18151093, 37.23702534, 127.21730232),
                 new CityGeolocation("Changwon", 35.19036409, 128.63342285, 35.24449754, 128.69899750),
+                //kor things
+                new CityGeolocation("Iksan", 35.94007309, 126.94264412, 35.95529020, 126.96315765),
+                new CityGeolocation("Kunpho", 37.35705928, 126.93191528, 37.38598077, 126.96899414),
+                new CityGeolocation("Kodje", 34.88807830, 128.60647202, 34.89476645, 128.62299442),
+                new CityGeolocation("Gyeongju", 35.83952494, 129.20093536, 35.85935262, 129.22848701),
+                new CityGeolocation("Osan", 37.13582444, 127.06297874, 37.15716996, 127.08323479),
+                new CityGeolocation("Mokpo", 34.78335552, 126.37933731, 34.81549453, 126.40302658),
+                new CityGeolocation("Gangneung", 37.74255311, 128.88113022, 37.77071474, 128.91082764),
+                new CityGeolocation("Icheon", 37.27558953, 127.43441105, 37.28644816, 127.45646954),
+                new CityGeolocation("Chungju", 36.96710658, 127.91399002, 36.99281864, 127.94626236),
+                new CityGeolocation("Yangju", 37.78407080, 127.04280853, 37.78757265, 127.05006123),
+                new CityGeolocation("Anson", 37.00234704, 127.25635529, 37.01694579, 127.27515221),
+
+
 
                 //china none
 

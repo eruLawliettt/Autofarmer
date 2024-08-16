@@ -35,10 +35,8 @@ namespace Autofarmer.Services.Email
         public Models.Email GetEmailModelFromString(string emailString)
         {
             string email = emailString[..emailString.IndexOf(':')];
-            string password = emailString[(emailString.IndexOf(':') + 1)..emailString.LastIndexOf(':')];
-            string recovery = emailString[(emailString.LastIndexOf(':') + 1)..];
 
-            return new Models.Email(email, password, recovery, GenerateQR(email + '1'));
+            return new Models.Email(emailString, email, GenerateQR(email + '1'));
         }
 
         private DrawingImage GenerateQR(string value)

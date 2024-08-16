@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:Autofarmer.ViewModels"
         xmlns:local="clr-namespace:Autofarmer.Views"
         mc:Ignorable="d"
-        Title="NewEmailWindow" 
+        Title="New Email" 
         Height="300" 
         Width="500"
         ResizeMode="NoResize"
@@ -18,11 +18,11 @@
         StartPoint="0, 2"
         EndPoint="1, 1">
                 <GradientStop 
-            Color="Purple" 
+            Color="#0F2027" 
             Offset="0.4"/>
                 <GradientStop 
-            Color="Blue" 
-            Offset="3"/>
+            Color="#2C5364" 
+            Offset="1.1"/>
             </LinearGradientBrush>
         </Border.Background>
 

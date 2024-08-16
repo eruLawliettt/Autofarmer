@@ -45,11 +45,11 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="#9D44C0"/>
+                                <Setter Property="Background" TargetName="border" Value="#203A43"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="#9D44C0"/>
+                                <Setter Property="Background" TargetName="border" Value="#203A43"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
@@ -64,8 +64,8 @@
         </Style>
 
 
-        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#9D44C0"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#9D44C0"/>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#203A43"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#203A43"/>
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="White"/>
         
         <Style x:Key="BetterTextBoxStyle" TargetType="{x:Type TextBox}">
