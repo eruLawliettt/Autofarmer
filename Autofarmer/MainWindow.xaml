@@ -7,10 +7,10 @@
         xmlns:local="clr-namespace:Autofarmer"
         mc:Ignorable="d"
         Title="Mr Farmer by Lawliet" 
-        Height="900"
-        MinHeight="900"
-        Width="1200"
-        MinWidth="1200"
+        Height="960"
+        MinHeight="700"
+        Width="1280"
+        MinWidth="900"
         WindowStartupLocation="CenterScreen"
         FontFamily="Calibri"
         Foreground="White"
@@ -74,15 +74,35 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox
-                        Grid.Column="0" 
-                        Foreground="White"
-                        Background="Transparent"
-                        BorderThickness="0"  
-                        Padding="10"
-                        IsReadOnly="True"
-                        Text="{Binding CurrentAccount.Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Grid
+                            Grid.Column="0">
 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox
+                                Grid.Column="0" 
+                                Foreground="White"
+                                Background="Transparent"
+                                BorderThickness="0"  
+                                Padding="10"
+                                IsReadOnly="True"
+                                Text="{Binding CurrentAccount.CurrentCityGeolocation.Country.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                            <TextBox
+                                Grid.Column="1" 
+                                Foreground="White"
+                                Background="Transparent"
+                                BorderThickness="0"  
+                                Padding="10"
+                                IsReadOnly="True"
+                                Text="{Binding CurrentAccount.Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        </Grid>
+                    
                     <TextBox
                         Grid.Column="1"
                         Foreground="White"

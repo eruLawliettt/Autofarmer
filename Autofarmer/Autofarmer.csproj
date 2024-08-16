@@ -24,4 +24,8 @@
     <Resource Include="Images\borderless_icon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\CountryFlags\" />
+  </ItemGroup>
+
 </Project>
