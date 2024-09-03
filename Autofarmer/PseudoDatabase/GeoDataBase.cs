@@ -58,7 +58,9 @@ namespace Autofarmer.PseudoDatabase
             Country FI = Countries.FirstOrDefault(c => c.Name == "Finland")!;
             Country FR = Countries.FirstOrDefault(c => c.Name == "France")!;
             Country GB = Countries.FirstOrDefault(c => c.Name == "Great Britain")!;
+            Country ES = Countries.FirstOrDefault(c => c.Name == "Spain")!;
             Country BE = Countries.FirstOrDefault(c => c.Name == "Belgium")!;
+            Country DK = Countries.FirstOrDefault(c => c.Name == "Denmark")!;
             Country NO = Countries.FirstOrDefault(c => c.Name == "Norway")!;
             Country CH = Countries.FirstOrDefault(c => c.Name == "Switzerland")!;
             Country KR = Countries.FirstOrDefault(c => c.Name == "South Korea")!;
@@ -66,8 +68,8 @@ namespace Autofarmer.PseudoDatabase
 
 
             CityGeolocations = [
-               //usa partial
-               
+
+                #region usa_p
                 new CityGeolocation(US, "New York", 40.70771001, -74.08630371, 40.81276986, -73.91601563),
                 new CityGeolocation(US, "Los Angeles", 33.96101678, -118.32962036, 34.09474770, -118.17100525),
                 new CityGeolocation(US, "Chicago", 41.85294071, -87.65819550, 41.88668781, -87.61802673),
@@ -99,8 +101,21 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(US, "Louisville", 38.23696664, -85.77730179, 38.25637996, -85.73455811),
                 new CityGeolocation(US, "Las Vegas", 36.09627357, -115.23902893, 36.22433449, -115.06530762),
                 new CityGeolocation(US, "Milwaukee", 43.03363903, -87.96804428, 43.07064341, -87.89749146),
+                new CityGeolocation(US, "Albuquerque", 35.07384094, -106.65802002, 35.14630145, -106.55467987),
+                new CityGeolocation(US, "Tucson", 32.19101272, -110.98354340, 32.26144286, -110.92844009),
+                new CityGeolocation(US, "Fresno", 36.72306260, -119.81946945, 36.78591668, -119.74891663),
+                new CityGeolocation(US, "Sacramento", 38.52399569, -121.50346756, 38.58386804, -121.42913818),
+                new CityGeolocation(US, "Long Beach", 33.76651898, -118.20199013, 33.79084651, -118.15538406),
+                new CityGeolocation(US, "Kansas City", 39.06957949, -94.64275360, 39.11354642, -94.52945709),
+                new CityGeolocation(US, "Virginia Beach", 36.83209601, -75.99775314, 36.85888374, -75.97543716),
+                new CityGeolocation(US, "Atlanta", 33.71320257, -84.43542480, 33.77258368, -84.35028076),
+                new CityGeolocation(US, "Colorado Springs", 38.82205601, -104.83969688, 38.85133923, -104.80287552),
+                new CityGeolocation(US, "Mes", 33.38472626, -111.88819885, 33.43258740, -111.78623199),
+                new CityGeolocation(US, "Mesa", 33.38472626, -111.88819885, 33.43258740, -111.78623199),
 
-                //new zealand partial
+                #endregion
+
+                #region newzealand_p
                 new CityGeolocation(NZ, "Auckland", -36.89678263, 174.73257065, -36.84610922, 174.78715897),
                 new CityGeolocation(NZ, "Christchurch", -43.55153408, 172.61100769, -43.51519470, 172.66250610),
                 new CityGeolocation(NZ, "Wellington", -41.29954051, 174.76552963, -41.27954804, 174.78157997),
@@ -112,7 +127,9 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(NZ, "Palmerston", -40.37165889, 175.59310913, -40.33803961, 175.63499451),
                 new CityGeolocation(NZ, "Palmerston", -39.51013316, 176.88537598, -39.48059302, 176.91936493),
 
-                //canada COMPLETE
+                #endregion
+
+                #region canada_c
                 new CityGeolocation(CA, "Toronto", 43.64154137, -79.45449829, 43.76068042, -79.30824280),
                 new CityGeolocation(CA, "Montreal", 45.45338760, -73.72512817, 45.56983236, -73.54728699),
                 new CityGeolocation(CA, "Calgary", 50.99949673, -114.13558960, 51.08152780, -113.96186829),
@@ -141,7 +158,9 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(CA, "Burlington", 43.32180586, -79.81704712, 43.34540467, -79.78185654),
                 new CityGeolocation(CA, "Oshawa", 43.87314822, -78.87634277, 43.91533086, -78.84304047),
 
-                //sweden COMPLETE
+                #endregion
+
+                #region sweden_c
                 new CityGeolocation(SE, "Stockholm", 59.31059273, 18.04281235, 59.34859561, 18.09997559),
                 new CityGeolocation(SE, "Gothenburg", 57.69222204, 11.94969177, 57.72376939, 12.00839996),
                 new CityGeolocation(SE, "Malmo", 55.57271615, 12.96489716, 55.61151715, 13.04248810),
@@ -157,7 +176,9 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(SE, "Halmstad", 56.66584954, 12.82413483, 56.68301396, 12.89245605),
                 new CityGeolocation(SE, "Eskilstuna", 59.37230397, 16.47193909, 59.38305912, 16.53991699),
 
-                //germany COMPLETE
+                #endregion
+
+                #region germany_c
                 new CityGeolocation(DE, "Berlin", 52.47943476, 13.31989288, 52.54128466, 13.45207214),
                 new CityGeolocation(DE, "Hamburg", 53.54907943, 9.90039825, 53.59331988, 10.0686264),
                 new CityGeolocation(DE, "Munich", 48.12118429, 11.52843475, 48.16379550, 11.64104462),
@@ -193,7 +214,9 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(DE, "Oberhausen", 51.45764373, 6.82456970, 51.48031383, 6.88602448),
                 new CityGeolocation(DE, "Potsdam", 52.39582023, 13.03956985, 52.41697431, 13.06652069),
 
-                //australia COMPLETE
+                #endregion
+
+                #region australia_c
                 new CityGeolocation(AU, "Adelaide", -34.96924965, 138.52043152, -34.85550981, 138.66531372),
                 new CityGeolocation(AU, "Sydney", -33.91743764, 151.15779877, -33.87326611, 151.23847961),
                 new CityGeolocation(AU, "Brisbane", -27.48847661, 152.99697876, -27.44095455, 153.04744720),
@@ -215,7 +238,9 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(AU, "Bunbury", -33.35920865, 115.62114716, -33.32608194, 115.66337585),
                 new CityGeolocation(AU, "Geraldton", -28.78345775, 114.61091995, -28.76698197, 114.62430954),
 
-                //ireland COMPLETE
+                #endregion
+
+                #region ireland_c
                 new CityGeolocation(IE, "Dublin", 53.30133845, -6.33636475, 53.39888863, -6.19766235),
                 new CityGeolocation(IE, "Cork", 51.87882240, -8.48505020, 51.91134377, -8.44488144),
                 new CityGeolocation(IE, "Limerick", 52.64858359, -8.63851547, 52.67388406, -8.61379623),
@@ -233,7 +258,9 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(IE, "Naas", 53.21250939, -6.66337967, 53.23573571, -6.64981842),
                 new CityGeolocation(IE, "Tralee", 52.26500573, -9.71706390, 52.28296710, -9.69260216),
 
-                //netherlands COMPLETE
+                #endregion
+
+                #region netherlands_c
                 new CityGeolocation(NL, "Amsterdam", 52.33617820, 4.83261108, 52.42461660, 4.94659424),
                 new CityGeolocation(NL, "Rotterdam", 51.90594283, 4.42405701, 51.94214849, 4.50508118),
                 new CityGeolocation(NL, "The Hague", 52.03939895, 4.26475525, 52.10523997, 4.38354492),
@@ -275,22 +302,28 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(NL, "Zeist", 52.08108844, 5.22090912, 52.09427321, 5.24339676),
                 new CityGeolocation(NL, "Middelburg", 51.49228594, 3.60119820, 51.50692612, 3.62857819),
 
-                //austria COMPLETE
+                #endregion
+
+                #region austria_c
                 new CityGeolocation(AT, "Vienna", 48.17593092, 16.32431030, 48.24113824, 16.41014099),
                 new CityGeolocation(AT, "Graz", 47.03316260, 15.39527893, 47.09910986, 15.45639038),
                 new CityGeolocation(AT, "Linz", 48.28570594, 14.26694870, 48.31779345, 14.30643082),
                 new CityGeolocation(AT, "Salzburg", 47.79009354, 13.01845551, 47.82260656, 13.06137085),
 
+                #endregion
+
                 //italy none
 
-                //finland COMPLETE
+                #region finland_c
                 new CityGeolocation(FI, "Helsinki", 60.16324795, 24.92317200, 60.17268404, 24.95201111),
                 new CityGeolocation(FI, "Espoo", 60.20163720, 24.65310574, 60.20797063, 24.66254711),
                 new CityGeolocation(FI, "Tampere", 61.49268245, 23.74394417, 61.50509222, 23.78625870),
                 new CityGeolocation(FI, "Oulu", 65.00450442, 25.46416283, 65.01498368, 25.48158646),
                 new CityGeolocation(FI, "Turku", 60.44646653, 22.24662781, 60.45751404, 22.27280617),
 
-                //france COMPLETE
+                #endregion
+
+                #region france_c
                 new CityGeolocation(FR, "Paris", 48.81884597, 2.29202271, 48.89767817, 2.39604950),
                 new CityGeolocation(FR, "Marcel", 43.27820513, 5.35892487, 43.31431226, 5.39394379),
                 new CityGeolocation(FR, "Lyon", 45.74536554, 4.80136871, 45.77315074, 4.86763000),
@@ -321,7 +354,9 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(FR, "Boulogne-Billancourt", 48.82788748, 2.22979546, 48.84218104, 2.25219727),
                 new CityGeolocation(FR, "Perpignan", 42.68155205, 2.87532806, 42.70337976, 2.90966034),
 
-                //great britain COMPLETE
+                #endregion
+
+                #region greatBritain_c
                 new CityGeolocation(GB, "Birmingham", 52.46437703, -1.93702698, 52.49845869, -1.86012268),
                 new CityGeolocation(GB, "Leeds", 53.77286279, -1.57636642, 53.82031444, -1.49791718),
                 new CityGeolocation(GB, "Liverpool", 53.39366839, -2.98982620, 53.43029893, -2.94622421),
@@ -333,7 +368,7 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(GB, "Bradford", 53.77103665, -1.77772522, 53.81028107, -1.72382355),
                 new CityGeolocation(GB, "Nottingham", 52.94046604, -1.17708206, 52.97572838, -1.11751556),
                 new CityGeolocation(GB, "Newcastle-upon-Tyne", 54.96771161, -1.62056923, 54.98239141, -1.60220146),
-                new CityGeolocation(GB, "Brighton & Hove", 50.82149919, -0.15973091, 50.83093296, -0.12951851),
+                new CityGeolocation(GB, "Brighton", 50.82149919, -0.15973091, 50.83093296, -0.12951851),
                 new CityGeolocation(GB, "Derby", 52.90196523, -1.50203705, 52.92970582, -1.45156860),
                 new CityGeolocation(GB, "Kingston-upon-Hull", 53.73866029, -0.36581039, 53.76362984, -0.32426834),
                 new CityGeolocation(GB, "Plymouth", 50.36780273, -4.17514801, 50.39582527, -4.11403656),
@@ -384,11 +419,20 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(GB, "Lincoln", 53.22350749, -0.55403709, 53.23344961, -0.53356647),
                 new CityGeolocation(GB, "West Bromwich", 52.51371370, -2.00603485, 52.52243593, -1.98698044),
 
+                #endregion
+
                 //hungary none
 
-                //spain none
+                #region spain_p
+                new CityGeolocation(ES, "Madrid", 40.40114372, -3.71698380, 40.43283694, -3.68754387),
+                new CityGeolocation(ES, "Barcelona", 41.37500519, 2.12156296, 41.41415304, 2.19589233),
+                new CityGeolocation(ES, "Valencia", 39.44865437, -0.40649414, 39.49582829, -0.32272339),
+                new CityGeolocation(ES, "Seville", 37.38113856, -6.00171089, 37.40084644, -5.97021103),
+                new CityGeolocation(ES, "Zaragoza", 41.63950108, -0.89907646, 41.65585591, -0.86997986),
 
-                //belgium COMPLETE
+                #endregion
+
+                #region belgium_c
                 new CityGeolocation(BE, "Brussels", 50.82025206, 4.29634094, 50.85992715, 4.40963745),
                 new CityGeolocation(BE, "Antwerp", 51.16944162, 4.34852600, 51.24558426, 4.46456909),
                 new CityGeolocation(BE, "Ghent", 51.03405383, 3.68797302, 51.07678259, 3.78101349),
@@ -400,9 +444,24 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(BE, "Namur", 50.45039975, 4.84685898, 50.48143210, 4.88239288),
                 new CityGeolocation(BE, "Leuven", 50.87027399, 4.68781471, 50.88505893, 4.71459389),
 
-                //denmark none
+                #endregion
 
-                //norway COMPLETE
+                #region denmark_c
+                new CityGeolocation(DK, "Copenhagen", 55.67787478, 12.51136780, 55.70951245, 12.58913040),
+                new CityGeolocation(DK, "Aarhus", 56.13976345, 10.17625809, 56.16581771, 10.21548271),
+                new CityGeolocation(DK, "Odense", 55.39215271, 10.36504269, 55.40460589, 10.40396690),
+                new CityGeolocation(DK, "Aalborg", 57.03778790, 9.90262985, 57.04871392, 9.93945122),
+                new CityGeolocation(DK, "Esbjerg", 55.46547488, 8.44080448, 55.47853729, 8.46342087),
+                new CityGeolocation(DK, "Frederiksberg", 55.67516456, 12.51325607, 55.68750424, 12.54527092),
+                //runners?
+                new CityGeolocation(DK, "Vaile", 55.70008188, 9.52506065, 55.70907724, 9.54008102),
+                new CityGeolocation(DK, "Horsens", 55.85334793, 9.83525276, 55.86962864, 9.86529350),
+                //calling?
+                new CityGeolocation(DK, "Roskill", 55.63477933, 12.06264496, 55.65027979, 12.09938049),
+
+                #endregion
+
+                #region norway_c
                 new CityGeolocation(NO, "Oslo", 59.91372983, 10.64987183, 59.94331935, 10.80711365),
                 new CityGeolocation(NO, "Bergen", 60.38362328, 5.31068802, 60.39948326, 5.34244537),
                 new CityGeolocation(NO, "Trondheim", 63.38198634, 10.35118103, 63.44053289, 10.46756744),
@@ -410,9 +469,11 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(NO, "Sandvika", 59.88600873, 10.51700592, 59.89569653, 10.53400040),
                 new CityGeolocation(NO, "Ålesund", 62.46628846, 6.12762451, 62.47640438, 6.19508743),
 
+                #endregion
+
                 //united arab emirates none
 
-                //switzerland COMPLETE
+                #region switzerland_c
                 new CityGeolocation(CH, "Zurich", 47.36510635, 8.50702286, 47.39416594, 8.55182648),
                 new CityGeolocation(CH, "Geneva", 46.16604117, 6.10771179, 46.20644812, 6.18736267),
                 new CityGeolocation(CH, "Basel", 47.53713768, 7.55516052, 47.57119848, 7.63343811),
@@ -420,9 +481,11 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(CH, "Bern", 46.93315098, 7.43156433, 46.96853947, 7.48821259),
                 new CityGeolocation(CH, "Winterthur", 47.48600498, 8.70357513, 47.51024415, 8.76296997),
 
+                #endregion
+
                 //israel none
 
-                //south korea partial
+                #region southKorea_p
                 new CityGeolocation(KR, "Busan", 35.16791477, 129.06961441, 35.19569489, 129.09502029),
                 new CityGeolocation(KR, "Incheon", 37.38543518, 126.62155151, 37.51027052, 126.73072815),
                 new CityGeolocation(KR, "Daegu", 35.82560781, 128.53454590, 35.89238774, 128.63994598),
@@ -446,14 +509,17 @@ namespace Autofarmer.PseudoDatabase
                 new CityGeolocation(KR, "Yangju", 37.78407080, 127.04280853, 37.78757265, 127.05006123),
                 new CityGeolocation(KR, "Anson", 37.00234704, 127.25635529, 37.01694579, 127.27515221),
 
-
+                #endregion
 
                 //china none
 
-                //iceland COMPLETE
+                #region iceland_c
                 new CityGeolocation(IS, "Reykjavik", 64.07520169, -21.97402954, 64.14775427, -21.81404114)
 
+                #endregion
+
                 //japan none
+
             ];
         }
     }
