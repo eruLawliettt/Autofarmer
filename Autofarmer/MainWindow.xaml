@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:Autofarmer.ViewModels"
         xmlns:local="clr-namespace:Autofarmer"
         mc:Ignorable="d"
-        Title="Mr Farmer by Lawliet" 
+        Title="Stealth Farmer" 
         Height="960"
         MinHeight="700"
         Width="1280"
@@ -16,7 +16,7 @@
         Foreground="White"
         FontSize="28"
         ResizeMode="CanResize"
-        Icon="Images/borderless_icon.ico">
+        Icon="Images/chrome.ico">
     
     
     <Window.DataContext>

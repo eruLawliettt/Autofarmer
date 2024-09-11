@@ -55,6 +55,7 @@ namespace Autofarmer.PseudoDatabase
             Country IE = Countries.FirstOrDefault(c => c.Name == "Ireland")!;
             Country NL = Countries.FirstOrDefault(c => c.Name == "Netherlands")!;
             Country AT = Countries.FirstOrDefault(c => c.Name == "Austria")!;
+            Country IT = Countries.FirstOrDefault(c => c.Name == "Italy")!;
             Country FI = Countries.FirstOrDefault(c => c.Name == "Finland")!;
             Country FR = Countries.FirstOrDefault(c => c.Name == "France")!;
             Country GB = Countries.FirstOrDefault(c => c.Name == "Great Britain")!;
@@ -312,7 +313,59 @@ namespace Autofarmer.PseudoDatabase
 
                 #endregion
 
-                //italy none
+                #region italy_c
+
+                new CityGeolocation(IT, "Rome", 41.88649612, 12.47428894, 41.90259645, 12.49317169),
+                new CityGeolocation(IT, "Milan",  45.45338760, 9.17701721, 45.47758655, 9.19770241),
+                new CityGeolocation(IT, "Naples",  40.83420350, 14.23313141, 40.85199465, 14.25476074),
+                new CityGeolocation(IT, "Turin",  45.05703135, 7.64270782, 45.07861192, 7.69386292),
+                new CityGeolocation(IT, "Palermo",  38.10883027, 13.34469795, 38.12355142, 13.36709976),
+                new CityGeolocation(IT, "Genoa",  44.40263711, 8.92699242, 44.41643269, 8.94742012),
+                new CityGeolocation(IT, "Bologna",  44.48677015, 11.33359909, 44.50440249, 11.35728836),
+                new CityGeolocation(IT, "Florence",  43.77084590, 11.24802589, 43.78869330, 11.27626419),
+                new CityGeolocation(IT, "Bari", 41.11052876, 16.85328484, 41.12856879, 16.87397003),
+                new CityGeolocation(IT, "Catania", 37.50244037, 15.07534504, 37.51803177, 15.09701729),
+                new CityGeolocation(IT, "Verona", 45.43194901, 10.98306656, 45.44616202, 11.00023270),
+                new CityGeolocation(IT, "Venice", 45.43318376, 12.32773304, 45.44167567, 12.34069347),
+                new CityGeolocation(IT, "Messina", 38.18989478, 15.54531097, 38.20055268, 15.55878639),
+                new CityGeolocation(IT, "Padua", 45.39471324, 11.86094284, 45.41556348, 11.88669205),
+                new CityGeolocation(IT, "Trieste", 45.63882744, 13.77007484, 45.66096713, 13.78878593),
+                new CityGeolocation(IT, "Parma", 44.79432273, 10.31384468, 44.80619875, 10.33658981),
+                new CityGeolocation(IT, "Brescia", 45.53238701, 10.20715714, 45.54362925, 10.23479462),
+                new CityGeolocation(IT, "Prato", 43.86856942, 11.08520508, 43.88873824, 11.11181259),
+                new CityGeolocation(IT, "Taranto", 40.46846581, 17.23879337, 40.47199175, 17.25068092),
+                new CityGeolocation(IT, "Modena", 44.63470390, 10.91011047, 44.65387896, 10.94203949),
+                new CityGeolocation(IT, "Perugia", 43.10421026, 12.37747192, 43.11464326, 12.39330769),
+                new CityGeolocation(IT, "Ravenna", 44.40361824, 12.18709946, 44.43230891, 12.21216202),
+                new CityGeolocation(IT, "Livorno", 43.53274488, 10.30345917, 43.56173504, 10.33178329),
+                new CityGeolocation(IT, "Rimini", 44.05052164, 12.56063461, 44.06643522, 12.57780075),
+                new CityGeolocation(IT, "Cagliari", 39.21423381, 9.10775185, 39.22779861, 9.12963867),
+                new CityGeolocation(IT, "Foggia", 41.45549665, 15.53681374, 41.46755694, 15.55449486),
+                new CityGeolocation(IT, "Ferrara", 44.82976084, 11.61229134, 44.84205558, 11.62825584),
+                new CityGeolocation(IT, "Latina", 41.46086778, 12.89734840, 41.47148008, 12.91468620),
+                new CityGeolocation(IT, "Salerno", 40.67774145, 14.75253582, 40.68203745, 14.76957321),
+                new CityGeolocation(IT, "Monza", 45.58058652, 9.26825523, 45.58713413, 9.28585052),
+                new CityGeolocation(IT, "Sassari", 40.71701346, 8.55431557, 40.72826695, 8.56873512),
+                new CityGeolocation(IT, "Bergamo", 45.68831466, 9.64565277, 45.70138397, 9.68341827),
+                new CityGeolocation(IT, "Pescara", 42.46006700, 14.19107437, 42.47488245, 14.21390533),
+                new CityGeolocation(IT, "Trento", 46.05869997, 11.11713409, 46.07019380, 11.13112450),
+                new CityGeolocation(IT, "Forlì", 44.21943086, 12.03148842, 44.22644289, 12.04659462),
+                new CityGeolocation(IT, "Vicenza", 45.54242698, 11.53512955, 45.55625154, 11.55693054),
+                new CityGeolocation(IT, "Bolzano", 46.49493575, 11.34866238, 46.50181900, 11.36256695),
+                new CityGeolocation(IT, "Piacenza", 45.04623801, 9.67775345, 45.05715261, 9.70556259),
+                new CityGeolocation(IT, "Novara", 45.43851394, 8.60898972, 45.45140066, 8.62907410),
+                new CityGeolocation(IT, "Ancona", 43.60749367, 13.50657463, 43.62010848, 13.52863312),
+                new CityGeolocation(IT, "Udine", 46.05381585, 13.22221756, 46.07573142, 13.24882507),
+                new CityGeolocation(IT, "Andria", 41.21972754, 16.28431320, 41.23212204, 16.30439758),
+                new CityGeolocation(IT, "Lecce", 40.34785241, 18.15868378, 40.36145714, 18.18786621),
+                new CityGeolocation(IT, "Barletta", 41.31069494, 16.26800537, 41.32216976, 16.29032135),
+                new CityGeolocation(IT, "Alessandria", 44.90792767, 8.60675812, 44.91789619, 8.62890244),
+                new CityGeolocation(IT, "Lucca", 43.83898438, 10.49674988, 43.84783667, 10.51297188),
+                new CityGeolocation(IT, "Pisa", 43.70908256, 10.39049149, 43.72347490, 10.41383743),
+                new CityGeolocation(IT, "Catanzaro", 38.90258925, 16.59064293, 38.91060416, 16.59304619),
+                new CityGeolocation(IT, "Treviso", 45.65892753, 12.23636627, 45.66960464, 12.25370407),
+
+                #endregion
 
                 #region finland_c
                 new CityGeolocation(FI, "Helsinki", 60.16324795, 24.92317200, 60.17268404, 24.95201111),
@@ -423,12 +476,49 @@ namespace Autofarmer.PseudoDatabase
 
                 //hungary none
 
-                #region spain_p
+                #region spain_c
                 new CityGeolocation(ES, "Madrid", 40.40114372, -3.71698380, 40.43283694, -3.68754387),
                 new CityGeolocation(ES, "Barcelona", 41.37500519, 2.12156296, 41.41415304, 2.19589233),
                 new CityGeolocation(ES, "Valencia", 39.44865437, -0.40649414, 39.49582829, -0.32272339),
                 new CityGeolocation(ES, "Seville", 37.38113856, -6.00171089, 37.40084644, -5.97021103),
                 new CityGeolocation(ES, "Zaragoza", 41.63950108, -0.89907646, 41.65585591, -0.86997986),
+                new CityGeolocation(ES, "Málaga", 36.71370574, -4.44396973, 36.73613279, -4.41530228),
+                new CityGeolocation(ES, "Malaga", 36.71370574, -4.44396973, 36.73613279, -4.41530228),
+                new CityGeolocation(ES, "Murcia", 37.97857442, -1.14000320, 38.00522575, -1.11785889),
+                new CityGeolocation(ES, "Palma", 39.56897727, 2.63405800, 39.58174561, 2.66461372),
+                new CityGeolocation(ES, "Las Palmas de Gran Canaria", 28.12354231, -15.44137001, 28.13610726, -15.42836666),
+                new CityGeolocation(ES, "Alicante", 38.33546256, -0.50949097, 38.36669461, -0.47687531),
+                new CityGeolocation(ES, "Bilbao", 43.25264233, -2.94871330, 43.26651882, -2.92914391),
+                new CityGeolocation(ES, "Cordoba", 37.87241433, -4.80033875, 37.90140691, -4.75570679),
+                new CityGeolocation(ES, "Valladolid", 41.62596513, -4.76325989, 41.65957526, -4.71141815),
+                new CityGeolocation(ES, "Vigo", 42.21453369, -8.73241425, 42.24046458, -8.71765137),
+                new CityGeolocation(ES, "Gijón", 43.52832670, -5.67589760, 43.54070923, -5.64740181),
+                new CityGeolocation(ES, "Gijon", 43.52832670, -5.67589760, 43.54070923, -5.64740181),
+                new CityGeolocation(ES, "La Coruña", 43.36830796, -8.40342522, 43.37910134, -8.39346886),
+                new CityGeolocation(ES, "La Coruna", 43.36830796, -8.40342522, 43.37910134, -8.39346886),
+                new CityGeolocation(ES, "Elche", 38.25590817, -0.71256638, 38.27444048, -0.69960594),
+                new CityGeolocation(ES, "Granada", 37.16141098, -3.60857964, 37.18609994, -3.59261513),
+                new CityGeolocation(ES, "Sabadell", 41.53312564, 2.10096359, 41.55226946, 2.11641312),
+                new CityGeolocation(ES, "Cartagena", 37.60539222, -0.99477768, 37.62402130, -0.97932816),
+                new CityGeolocation(ES, "Jerez de la Frontera", 36.67502778, -6.15011215, 36.69884249, -6.12522125),
+                new CityGeolocation(ES, "Mostoles", 40.31382858, -3.87800217, 40.33398323, -3.85259628),
+                new CityGeolocation(ES, "Pamplona", 42.80944387, -1.65593147, 42.82191007, -1.63687706),
+                new CityGeolocation(ES, "Almería", 36.83580564, -2.47140884, 36.84494155, -2.44583130),
+                new CityGeolocation(ES, "Almeria", 36.83580564, -2.47140884, 36.84494155, -2.44583130),
+                new CityGeolocation(ES, "Alcalá de Henares", 40.47359142, -3.38155746, 40.49108736, -3.35134506),
+                new CityGeolocation(ES, "Alcala de Henares", 40.47359142, -3.38155746, 40.49108736, -3.35134506),
+                new CityGeolocation(ES, "San Sebastian", 43.31649799, -1.98607922, 43.32352301, -1.98015690),
+                new CityGeolocation(ES, "Fuenlabrada", 40.27487642, -3.80590439, 40.29183482, -3.78556252),
+                new CityGeolocation(ES, "Castelló de la Plana", 39.97764627, -0.06763458, 39.99645437, -0.02351761),
+                new CityGeolocation(ES, "Castello de la Plana", 39.97764627, -0.06763458, 39.99645437, -0.02351761),
+                new CityGeolocation(ES, "Burgos", 42.33583403, -3.69913101, 42.35124974, -3.68299484),
+                new CityGeolocation(ES, "Santander", 43.45640804, -3.83525848, 43.47422444, -3.78616333),
+                new CityGeolocation(ES, "Alcorcón", 40.33934806, -3.83671761, 40.35177714, -3.81972313),
+                new CityGeolocation(ES, "Alcorcon", 40.33934806, -3.83671761, 40.35177714, -3.81972313),
+                new CityGeolocation(ES, "Marbella", 36.50701461, -4.89973068, 36.51481001, -4.87853050),
+                new CityGeolocation(ES, "Badajoz", 38.86928428, -6.97927952, 38.88147899, -6.96387291),
+                new CityGeolocation(ES, "Salamanca", 40.95935422, -5.67366600, 40.97043703, -5.65220833),
+                new CityGeolocation(ES, "Albacete", 38.98590010, -1.86630249, 39.00110978, -1.84578896),
 
                 #endregion
 

@@ -27,7 +27,7 @@ namespace Autofarmer.ViewModels
 
         private ChromeDriver _chromeDriver;
 
-        private const int TotalAccounts = 40;
+        private int TotalAccounts = 0;
 
         private List<Account> _accounts = [];
         private Account _currentAccount;
@@ -83,6 +83,7 @@ namespace Autofarmer.ViewModels
                     model.CurrentCityGeolocation = cityGeolocation;
 
                 Accounts.Add(model);
+                TotalAccounts += 1;
             }
 
             CurrentAccount = Accounts[0];

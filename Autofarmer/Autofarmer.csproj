@@ -12,6 +12,7 @@
     <None Remove="Images\bettertinder.png" />
     <None Remove="Images\borderless_icon.ico" />
     <None Remove="Images\borderless_icon.png" />
+    <None Remove="Images\chrome.ico" />
     <None Remove="Images\farm.jpg" />
     <None Remove="Images\icon.png" />
     <None Remove="Images\KBackground.jpg" />
@@ -28,6 +29,7 @@
 
   <ItemGroup>
     <Resource Include="Images\borderless_icon.ico" />
+    <Resource Include="Images\chrome.ico" />
     <Resource Include="Images\farm.jpg" />
     <Resource Include="Images\KBackground.jpg" />
     <Resource Include="Images\unnamed.jpg" />
