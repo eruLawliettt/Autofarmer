@@ -106,7 +106,19 @@ namespace Autofarmer.ViewModels
         void LogInToEmail()
         {
             WebDriverDispose();
-            Clipboard.SetText(CurrentAccount.Email.EmailString);
+
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+            service.HideCommandPromptWindow = true;
+
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("--disable-blink-features=AutomationControlled");
+
+            _chromeDriver = new(service, options);
+
+            string url = "https://gmail.com";
+
+            _chromeDriver.Navigate().GoToUrl(url);
+
             try
             {
                 string emailString = CurrentAccount.Email.EmailString!;
@@ -114,18 +126,6 @@ namespace Autofarmer.ViewModels
                 string login = CurrentAccount.Email.Address!;
                 string password = emailString[emailString.IndexOf(':')..].Remove(0, 1);
                 password = password[..password.IndexOf(":")];
-
-                ChromeDriverService service = ChromeDriverService.CreateDefaultService();
-                service.HideCommandPromptWindow = true;
-
-                ChromeOptions options = new ChromeOptions();
-                options.AddArgument("--disable-blink-features=AutomationControlled");
-
-                _chromeDriver = new(service, options);
-
-                string url = "https://gmail.com";
-
-                _chromeDriver.Navigate().GoToUrl(url);
 
                 var wait = new WebDriverWait(_chromeDriver, TimeSpan.FromSeconds(5));
 
@@ -146,7 +146,7 @@ namespace Autofarmer.ViewModels
 
             catch (Exception ex) 
             {
-                
+
             }
             
         }
