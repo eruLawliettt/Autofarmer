@@ -34,7 +34,7 @@ namespace Autofarmer.Services.Email
 
         public Models.Email GetEmailModelFromString(string emailString)
         {
-            string email = emailString[..emailString.IndexOf('@')] + "@gmail.com";
+            string email = emailString[..emailString.IndexOf('@')] + "@outlook.com";
 
             return new Models.Email(emailString, email, GenerateQR(email + '1'));
         }

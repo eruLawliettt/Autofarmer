@@ -11,6 +11,8 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
+using static QRCoder.PayloadGenerator;
+using OpenQA.Selenium.DevTools.V127.Storage;
 
 namespace Autofarmer.ViewModels
 {
@@ -90,12 +92,16 @@ namespace Autofarmer.ViewModels
             CurrentAccountNumber = 1;
         }
 
+
+
         public string GetRandomValueFromList(List<string> list)
         {
             var random = new Random();
             int index = random.Next(list.Count);
             return list[index];
         }
+
+
 
         void WebDriverDispose()
         {
@@ -111,11 +117,11 @@ namespace Autofarmer.ViewModels
             service.HideCommandPromptWindow = true;
 
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--disable-blink-features=AutomationControlled");
+            options.AddArgument("--disable-blink-features=AutomationControlled");;
 
             _chromeDriver = new(service, options);
 
-            string url = "https://gmail.com";
+            string url = "https://login.live.com/";
 
             _chromeDriver.Navigate().GoToUrl(url);
 
@@ -125,32 +131,36 @@ namespace Autofarmer.ViewModels
 
                 string login = CurrentAccount.Email.Address!;
                 string password = emailString[emailString.IndexOf(':')..].Remove(0, 1);
-                password = password[..password.IndexOf(":")];
 
                 var wait = new WebDriverWait(_chromeDriver, TimeSpan.FromSeconds(5));
 
-                wait.Until(d => _chromeDriver.FindElement(By.Id("identifierId")));
-                IWebElement id = _chromeDriver.FindElement(By.Id("identifierId"));
-                id.SendKeys(login);
+               
+                _chromeDriver.FindElement(By.Id("i0116")).SendKeys(login);
+               
+                _chromeDriver.FindElement(By.Id("idSIButton9")).Click();
 
-                IWebElement btn = _chromeDriver.FindElement(By.Id("identifierNext"));
-                btn.Click();
+                wait.Until(d => d.FindElement(By.Name("passwd"))).SendKeys(password);
 
-                wait.Until(d => d.FindElement(By.Name("Passwd")));
-                IWebElement passBox = _chromeDriver.FindElement(By.Name("Passwd"));
-                passBox.SendKeys(password);
+                _chromeDriver.FindElement(By.Id("idSIButton9")).Click() ;
+                
+                _chromeDriver.Navigate().GoToUrl("https://www.microsoft.com/ru-ru/microsoft-365/outlook");
 
-                IWebElement passBtn = _chromeDriver.FindElement(By.Id("passwordNext"));
-                passBtn.Click();    
+             
+
+                //wait.Until(d => d.FindElement(By.XPath("//*[text()='Вход']"))).Click();
+                
+                
+                
+
             }
 
-            catch (Exception ex) 
+            catch (Exception ex)
             {
 
             }
-            
+
         }
-        
+
         void NextAccount()
         {
             int index = Accounts.IndexOf(CurrentAccount) + 1;
